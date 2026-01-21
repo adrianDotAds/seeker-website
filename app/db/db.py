@@ -25,3 +25,13 @@ if supabase_admin is None:
     raise ValueError("Supabase admin client could not be created. Check your environment variables.")
 else:
     print("Supabase admin client created successfully.")
+
+async def get_supabase_client(client_type: str = "anon") -> Client:
+    """
+    Dependency to get the appropriate Supabase client.
+    :param client_type: 'user' for regular client, 'admin' for admin client
+    :return: Supabase Client instance
+    """
+    if client_type == "admin":
+        return supabase_admin
+    return supabase
