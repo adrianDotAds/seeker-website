@@ -10,7 +10,7 @@ from fastapi.templating import Jinja2Templates
 from app.db import supabase
 
 # Import routers
-from app.routers import auth
+from app.routers import *
 
 app = FastAPI()
 
@@ -25,4 +25,5 @@ async def test_main():
 
 @app.get("/", tags=["Root"])
 async def root():
+    print("Rendering index.html template")
     return templates.TemplateResponse("index.html", {"request": {}})
