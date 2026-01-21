@@ -1,4 +1,4 @@
-# db.py
+# app/db/db.py
 
 # Will use these to create Supabase client
 import os
