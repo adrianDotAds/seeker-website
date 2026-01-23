@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 # For template rendering (if needed). To load HTML templates
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 # Importing the Supabase client and user authentication dependency
 from app.db import supabase
@@ -13,6 +14,9 @@ from app.db import supabase
 from app.routers import *
 
 app = FastAPI()
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
 app.include_router(user.router, prefix="", tags=["User Management"])
