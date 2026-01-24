@@ -69,9 +69,24 @@
         a{
             text-decoration: none;
         }
+
+        @keyframes rotate-logo {
+            /** Loading animation for the logo **/
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg) scale(3);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @media screen and (max-width: 650px) {
             #login-form-container {
                 width: 70%;
+                border: 10px solid #004AAD;
             }
             #login-header {
                 font-size: var(--header-mobile-font-size);
@@ -91,19 +106,23 @@
     </style>
 </head>
 <body>
-    <div id ="login-form-container">
-        <h2 id="login-header">SEEKER AUTHENTICATION</h2>
-        <form action="/login" method="post">
-            <input type="email" name="email" placeholder="EMAIL" required>
-            <input type="password" name="password" placeholder="PASSWORD" required>
-            <input type="text" name="seeker_id" placeholder="SEEKER ID" required>
-            <button type="submit">LOG IN</button>
-            <div class="sign-up-holder">
-                <h3 style="margin: 0 0 0 0;">NOT A MEMBER YET?</h3>
-                <a href="/sign-up"><h3 class="sign-up">I WANT TO BECOME A SEEKER</h3></a>
-            </div>
-        </form>
+    <div id="paren-container" style="display: flex; flex-direction: column; align-items: center; width: 80dvh;">
+        <div style="margin: 0% 0% 5% 0%;">    
+            <img src="/static/logo.png" alt="Seeker Logo" style="width: 100%; height: auto;">
+        </div>
+        <div id ="login-form-container">
+            <h2 id="login-header">SEEKER AUTHENTICATION</h2>
+            <form action="/login" method="post">
+                <input type="email" name="email" placeholder="EMAIL" required>
+                <input type="password" name="password" placeholder="PASSWORD" required>
+                <input type="text" name="seeker_id" placeholder="SEEKER ID" required>
+                <button type="submit">LOG IN</button>
+                <div class="sign-up-holder">
+                    <h3 style="margin: 0 0 0 0;">NOT A MEMBER YET?</h3>
+                    <a href="/sign-up"><h3 class="sign-up">I WANT TO BECOME A SEEKER</h3></a>
+                </div>
+            </form>
+        </div>
     </div>
-    
 </body>
 </html>
