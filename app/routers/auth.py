@@ -86,3 +86,40 @@ async def logout():
 @router.get("/test-auth")
 async def test_auth():
     return {"message": "Test auth endpoint"}
+
+@router.post("/sign-up/check")
+async def sign_up(
+    fname: str = Form(...),
+    lname: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...),
+    seeker_id: str = Form(...)
+    ):
+    '''
+    Docstring for sign_up
+    '''
+    # Check if seeker ID exists in the database
+    exists = await verify_seeker_credentials(seeker_id, email)
+    print(f"Seeker ID exists: {exists}")
+
+    if exists:
+        # Create user in Supabase Auth
+        supabase = await get_supabase_client("anon")
+        response = supabase.auth.sign_up({
+            "email": email,
+            "password": password,
+            "options": {
+                "data": {
+                    "first_name": fname,
+                    "last_name": lname,
+                    "seeker_id": seeker_id
+                }
+            }
+        })
+
+        if response.user:
+            print(f"User {email} signed up successfully.")
+            return RedirectResponse(url="/", status_code=303)
+        else:
+            print(f"Sign-up failed for {email}.")
+            return HTMLResponse(content="Sign-up failed", status_code=400)

@@ -32,3 +32,8 @@ async def test_main():
 async def root():
     print("Rendering index.html template")
     return templates.TemplateResponse("index.html", {"request": {}})
+
+@app.get("/sign-up")
+async def sign_up():
+    print("Rendering sign-up.html template")
+    return templates.TemplateResponse("sign-up.html", {"request": {}})
