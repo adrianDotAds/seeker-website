@@ -64,10 +64,13 @@ async def login(
             return redirect_url
         else:
             print("Login failed, no session returned")
-            return HTMLResponse(content="Login failed", status_code=400)
+            return HTMLResponse(content='''Login failed''', status_code=400)
     else:
         print("Invalid credentials provided")
-        # return HTMLResponse(content="Login failed", status_code=400)
+        return HTMLResponse(content='''
+                            <h1>Login failed</h1>
+                            <a href="/">Go Back to Home</a>
+                            ''', status_code=400)
             
         # Perform login and return response
         # await login_user()
@@ -122,4 +125,10 @@ async def sign_up(
             return RedirectResponse(url="/", status_code=303)
         else:
             print(f"Sign-up failed for {email}.")
-            return HTMLResponse(content="Sign-up failed", status_code=400)
+            return HTMLResponse(content='''Sign-up failed''', status_code=400)
+    else:
+        print("Seeker ID verification failed during sign-up.")
+        return HTMLResponse(content='''
+                            <h1>Contact Your Guild for Seeker ID Connected in Your Email</h1>
+                            \n<a href="/">Go Back to Home</a>
+                            ''', status_code=400)

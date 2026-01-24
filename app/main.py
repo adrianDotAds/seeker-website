@@ -37,3 +37,8 @@ async def root():
 async def sign_up():
     print("Rendering sign-up.html template")
     return templates.TemplateResponse("sign-up.html", {"request": {}})
+
+@app.get("/add-member")
+async def add_member():
+    print("Rendering add-member.html template")
+    return templates.TemplateResponse("add-member.html", {"request": {}})
