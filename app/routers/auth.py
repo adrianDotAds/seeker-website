@@ -129,6 +129,6 @@ async def sign_up(
     else:
         print("Seeker ID verification failed during sign-up.")
         return HTMLResponse(content='''
-                            <h1>Contact Your Guild for Seeker ID Connected in Your Email</h1>
+                            <h1>Sign-up failed. Contact Your Guild for Seeker ID Connected in Your Email</h1>
                             \n<a href="/">Go Back to Home</a>
                             ''', status_code=400)
