@@ -44,7 +44,7 @@ app.add_middleware(
 async def test_main():
     return {"message": "Main endpoint is working!"}
 
-@app.get("/", tags=["Root"])
+@app.get("/log", tags=["Root"])
 async def root():
     print("Rendering index.html template")
     return templates.TemplateResponse("index.html", {"request": {}})

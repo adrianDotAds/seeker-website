@@ -1,2 +1,9 @@
 # Vite template
 npm create vite@latest my-app -- --template react-ts
+
+# creating
+npm create vite@latest frontend
+
+# Runnung
+frontend
+npm run dev
