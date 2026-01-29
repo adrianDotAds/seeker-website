@@ -16,8 +16,15 @@ from app.routers import *
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Mount static files
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+# app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
 app.include_router(user.router, prefix="", tags=["User Management"])
@@ -40,11 +47,12 @@ app.add_middleware(
     allow_headers=["*"],    # Allows custom headers like Authorization
 )
 
-@app.get("/test-main")
-async def test_main():
-    return {"message": "Main endpoint is working!"}
+@app.post("/test-main")
+async def test_main(data: dict = {}):
+    print("Main endpoint accessed with data:", data)
+    return {"message": "Main endpoint is working!  ", "data": data}
 
-@app.get("/log", tags=["Root"])
+@app.get("/", tags=["Root"])
 async def root():
     print("Rendering index.html template")
     return templates.TemplateResponse("index.html", {"request": {}})

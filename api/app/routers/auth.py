@@ -11,18 +11,14 @@ from fastapi.templating import Jinja2Templates
 from app.db import *
 
 # HTML response and redirection
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import JSONResponse, Response
 
 template = Jinja2Templates(directory="app/templates")
 
 router = APIRouter()
 
 @router.post("/login")
-async def login(
-    email: str = Form(...),
-    password: str = Form(...),
-    seeker_id: str = Form(...)
-):
+async def login(payload: dict, response: Response):
     '''
     Docstring for login
     
@@ -33,47 +29,65 @@ async def login(
     :param seeker_id: Seeker ID provided by admin
     :type seeker_id: str
     '''
-
+    print("Login payload received:", payload)
+    email = payload.get("email")
+    password = payload.get("password")
+    seeker_id = payload.get("seeker_id")
+    print(f"Login attempt for email: {email} with seeker ID: {seeker_id}")
+    
     # Check if Credentials are valid
-    is_valid = await verify_seeker_credentials(seeker_id, email)
+    is_valid = await verify_seeker_credentials(seeker_id, email) # type: ignore
     print(f"Credentials valid: {is_valid}")
     if is_valid:
-        # Login the user
-        supabase = await get_supabase_client("anon")
-        response = supabase.auth.sign_in_with_password({
-            "email": email,
-            "password": password
-        })
+        try:
+            # Login the user
+            supabase = await get_supabase_client("anon") # type: ignore
+            response = supabase.auth.sign_in_with_password({
+                "email": email,
+                "password": password
+            })
 
-        # Get cookie with access token
-        if response.session:
-            # Get user for jinja rendering
-            user = response.user.user_metadata.get("first_name", "User")
-            print(f"User {user} logged in successfully")
-            # Create redirect response to dashboard with user info
-            redirect_url = RedirectResponse(url=f"/dashboard?user_name={user}", status_code=303)
-            # Set cookie with access token
-            redirect_url.set_cookie(
+            # Create message response
+            content = {
+                "message": "Login successful",
+                "user": response.user.user_metadata.get("first_name", "User"),
+                "session": {
+                    "access_token": response.session.access_token,
+                    "refresh_token": response.session.refresh_token,
+                    "expires_at": response.session.expires_in
+                }
+            }
+
+            # Get cookie with access token
+            try:
+                response_obj = JSONResponse(content=content)
+            except Exception as e:
+                print("Error creating JSON response:", e)
+                return JSONResponse(content={"message": "Internal server error"}, status_code=500)
+            response_obj.set_cookie(
                 key="access_token", 
                 value=response.session.access_token,
                 httponly=True,
-                )
-
-            # print(redirect_url.value)
-            print("Login successful, redirecting to dashboard")
-            return redirect_url
-        else:
-            print("Login failed, no session returned")
-            return HTMLResponse(content='''Login failed''', status_code=400)
+                secure=True,
+                samesite="lax",
+                max_age=30 # 1 hour
+            )
+            response_obj.set_cookie(
+                key="refresh_token", 
+                value=response.session.refresh_token,
+                httponly=True,
+                secure=True,
+                samesite="lax",
+                max_age=30
+            )
+            return response_obj
+            # Perform login and return response
+            # await login_user()
+        except Exception as e:
+            print(f"Error during login: {e}")
+            return JSONResponse(content={"message": "Login failed"}, status_code=400)
     else:
-        print("Invalid credentials provided")
-        return HTMLResponse(content='''
-                            <h1>Login failed</h1>
-                            <a href="/">Go Back to Home</a>
-                            ''', status_code=400)
-            
-        # Perform login and return response
-        # await login_user()
+        return JSONResponse(content={"message": "Invalid credentials"}, status_code=401)
     # print("Invalid credentials, redirecting to home")
     # return RedirectResponse(url="/", status_code=303)
 
