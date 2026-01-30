@@ -1,19 +1,16 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 
-// Import Components
-import LoginSignupContainer from './components/LoginSignup'
-import Dashboard from './components/Dashboard'
-import TestComponent from './components/test'
+import { Routes, Route } from 'react-router-dom';
 
+import LoginSignupContainer from './components/LoginSignup';
 
 function App() {
+
   return (
-    <>
-      <LoginSignupContainer />
-      {/* <TestComponent /> */}
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<LoginSignupContainer />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
