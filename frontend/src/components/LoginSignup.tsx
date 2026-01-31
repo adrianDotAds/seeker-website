@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // Import assets and styles
 import logo from '../assets/logo.png';
@@ -32,7 +32,7 @@ function LoginSignupContainer() {
 }
 
 function LoginForm({onSwitch}: {onSwitch: () => void}) {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,7 +52,9 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
                 { withCredentials: true }
             )
             console.log('Login successful:', document.cookie);
-            return <Navigate to="/dashboard" />;
+
+            navigate("/dashboard");
+            console.log('Redirecting to dashboard...');
 
         } catch (error) {
             console.error('Login failed:', error);
