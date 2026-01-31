@@ -16,9 +16,17 @@ from app.routers import *
 
 app = FastAPI()
 
+# CORS configuration
+origins = (
+    "http://localhost",
+    "http://localhost:8086",
+    "http://localhost:5173"
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=list(origins),
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -31,21 +39,6 @@ app.include_router(user.router, prefix="", tags=["User Management"])
 
 # Templates directory setup
 templates = Jinja2Templates(directory="app/templates")
-
-# Define the origins that are allowed to talk to your API
-origins = [
-    "http://localhost:5173",  # Vite default
-    "http://127.0.0.1:5173",
-]
-
-# Set up CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],    # Allows GET, POST, OPTIONS, etc.
-    allow_headers=["*"],    # Allows custom headers like Authorization
-)
 
 @app.post("/test-main")
 async def test_main(data: dict = {}):
