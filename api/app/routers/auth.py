@@ -10,15 +10,19 @@ from fastapi.templating import Jinja2Templates
 # Access to Supabase client if needed
 from app.db import *
 
-# HTML response and redirection
+# HTML response, request and redirection
 from fastapi.responses import JSONResponse, Response
+from fastapi.requests import Request
+
+# Schemas and models
+from app.schemas import *
 
 template = Jinja2Templates(directory="app/templates")
 
 router = APIRouter()
 
 @router.post("/login")
-async def login(payload: dict, response: Response):
+async def login(payload: LoginRequest, response: Response, request: Request):
     '''
     Docstring for login
     
@@ -30,10 +34,11 @@ async def login(payload: dict, response: Response):
     :type seeker_id: str
     '''
     print("Login payload received:", payload)
-    email = payload.get("email")
-    password = payload.get("password")
-    seeker_id = payload.get("seeker_id")
+    email = payload.email
+    password = payload.password
+    seeker_id = payload.seeker_id
     print(f"Login attempt for email: {email} with seeker ID: {seeker_id}")
+    print(f"IP Address: {request.client.host}   User-Agent: {request.headers.get('user-agent')}")
     
     # Check if Credentials are valid
     is_valid = await verify_seeker_credentials(seeker_id, email) # type: ignore

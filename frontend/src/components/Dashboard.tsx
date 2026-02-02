@@ -16,6 +16,7 @@ const Dashboard = () => {
                 const response = await axios.get(`${API_BASE_URL}/users/me`, {
                     withCredentials: true // Important: sends your cookies back to FastAPI
                 });
+                console.log("User data fetched:", response.data);
                 setUser(response.data);
             } catch (err) {
                 console.error("Not authorized", err);

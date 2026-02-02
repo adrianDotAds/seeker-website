@@ -1,0 +1,1 @@
+from .authscema import LoginRequest
