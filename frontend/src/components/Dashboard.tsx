@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const API_BASE_URL = 'http://10.10.20.198:8085'; // Adjust to your FastAPI URL
 
@@ -37,7 +38,8 @@ const Dashboard = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
+        <div style={{ padding: '40px', fontFamily: 'sans-serif', color: '#ffffff' }}>
+            <NavBar />
             <nav style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '20px' }}>
                 <h2>My Dashboard</h2>
                 <button onClick={handleLogout} style={{ padding: '8px 16px', cursor: 'pointer' }}>Logout</button>

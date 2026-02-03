@@ -107,6 +107,31 @@ a {
   margin-top: 10px;
 }
 
+.nav-bar {
+  background-color: #022251;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.nav-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-button {
+  font-family: 'Cinzel', serif;
+  width: clamp(40px, 20vw, 120px);
+  background-color: #022251;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 76%;
+}
+
 @media screen and (max-width: 600px) {
   .name-inputs {
     flex-direction: column;

@@ -13,6 +13,7 @@ async def validate_token(
     Dependency to get the current authenticated user from the request.
     This is a placeholder function and should be implemented to extract user info from the request.
     """
+    return {"first_name": "Demo User"}
     # 1. Get Supabase client
     supabase = await get_supabase_client("admin")
 
