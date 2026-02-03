@@ -1,18 +1,20 @@
 # app/db/db.py
 
+# Config imports to access environment variables
+from app.config import Settings
+
 # Will use these to create Supabase client
 import os
-from dotenv import load_dotenv
 from supabase import create_client, Client
 
 # FastAPI imports for dependency injection
 from fastapi import Depends, HTTPException, Request
 
-load_dotenv()
+settings = Settings()
 
-SUPABASE_URL: str = os.getenv("SUPABASE_URL")
-SUPABASE_KEY: str = os.getenv("SUPABASE_KEY")
-SUPABASE_KEY_ADMIN: str = os.getenv("SUPABASE_KEY_ADMIN")
+SUPABASE_URL: str = settings.SUPABASE_URL
+SUPABASE_KEY: str = settings.SUPABASE_KEY
+SUPABASE_KEY_ADMIN: str = settings.SUPABASE_KEY_ADMIN
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 supabase_admin: Client = create_client(SUPABASE_URL, SUPABASE_KEY_ADMIN)

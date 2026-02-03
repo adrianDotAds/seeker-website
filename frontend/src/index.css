@@ -101,9 +101,16 @@ a {
   margin: 0 0 0 0;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 600px) {
   .name-inputs {
     flex-direction: column;
   }
   
 }
+

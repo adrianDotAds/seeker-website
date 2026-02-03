@@ -1,7 +1,14 @@
 # app/routers/auth.py
 
+# imports for dependency to verify current user
+import asyncio
+from fastapi import Cookie
+
+# Dependency to get current user
+from app.dependencies import validate_token
+
 # imports for FastAPI router
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 # imports for form data handling
 from fastapi import Form
@@ -33,12 +40,10 @@ async def login(payload: LoginRequest, response: Response, request: Request):
     :param seeker_id: Seeker ID provided by admin
     :type seeker_id: str
     '''
-    print("Login payload received:", payload)
+    print(request)
     email = payload.email
     password = payload.password
     seeker_id = payload.seeker_id
-    print(f"Login attempt for email: {email} with seeker ID: {seeker_id}")
-    print(f"IP Address: {request.client.host}   User-Agent: {request.headers.get('user-agent')}")
     
     # Check if Credentials are valid
     is_valid = await verify_seeker_credentials(seeker_id, email) # type: ignore
@@ -51,16 +56,11 @@ async def login(payload: LoginRequest, response: Response, request: Request):
                 "email": email,
                 "password": password
             })
-
+            print(f"Login response: {response}")
             # Create message response
             content = {
                 "message": "Login successful",
                 "user": response.user.user_metadata.get("first_name", "User"),
-                "session": {
-                    "access_token": response.session.access_token,
-                    "refresh_token": response.session.refresh_token,
-                    "expires_at": response.session.expires_in
-                }
             }
 
             # Get cookie with access token
@@ -73,18 +73,21 @@ async def login(payload: LoginRequest, response: Response, request: Request):
                 key="access_token", 
                 value=response.session.access_token,
                 httponly=True,
-                secure=True,
+                secure=False,
                 samesite="lax",
+                path="/",
                 max_age=30 # 1 hour
             )
             response_obj.set_cookie(
                 key="refresh_token", 
                 value=response.session.refresh_token,
                 httponly=True,
-                secure=True,
+                secure=False,
                 samesite="lax",
-                max_age=30
+                path="/",
+                max_age=3600 # 1 hour
             )
+            print("Login successful, cookies set.")
             return response_obj
             # Perform login and return response
             # await login_user()
@@ -93,17 +96,45 @@ async def login(payload: LoginRequest, response: Response, request: Request):
             return JSONResponse(content={"message": "Login failed"}, status_code=400)
     else:
         return JSONResponse(content={"message": "Invalid credentials"}, status_code=401)
-    # print("Invalid credentials, redirecting to home")
-    # return RedirectResponse(url="/", status_code=303)
+
+@router.get("/users/me")
+async def check_auth(
+    access_token: str | None = Cookie(None), 
+    refresh_token: str | None = Cookie(None), 
+    request: Request = None # needed to get cookies
+    ):
+
+    try:
+        # user = await validate_token(access_token, refresh_token, response=None)
+        print(f"Checking auth with access_token: {access_token}, refresh_token: {refresh_token}")
+        print(f'Request: {request}')
+        print(f"Request headers: {request.headers}")
+        print(f'Request cookies access_token: {request.cookies.get("access_token")}')
+        user = await validate_token(access_token, refresh_token)
+        print(f"Authenticated user: {user}")
+        return {"user": user}  # type: ignore
+    except Exception as e:
+        print(f"Error checking auth: {e}")
+        return JSONResponse(content={"message": "Error checking auth"}, status_code=500)
+
 
 @router.get("/logout")
-async def logout():
-    # Create redirect response to home
-    redirect_url = RedirectResponse(url="/", status_code=303)
-    # Remove the access token cookie
-    redirect_url.delete_cookie(key="access_token")
-    print("User logged out, redirecting to home")
-    return redirect_url
+async def logout(response: Response):
+    '''
+    Docstring for logout
+    '''
+    try:
+        # Clear the cookies
+        supabase = await get_supabase_client("anon")
+        sign_out_response = supabase.auth.sign_out()
+        print(f"Sign out response from Supabase: {sign_out_response}")
+        response.delete_cookie(key="access_token", path="/")
+        response.delete_cookie(key="refresh_token", path="/")
+        return JSONResponse(content={"message": "Logout successful"})
+    except Exception as e:
+        print(f"Error during logout: {e}")
+        return JSONResponse(content={"message": "Logout failed"}, status_code=500)
+    
 
 @router.get("/test-auth")
 async def test_auth():

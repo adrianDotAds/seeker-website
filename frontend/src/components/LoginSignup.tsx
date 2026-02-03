@@ -8,7 +8,7 @@ import logo from '../assets/logo.png';
 // URLS
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8085';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085';
 
 
 function LoginSignupContainer() {
@@ -37,6 +37,7 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [seekerId, setSeekerId] = useState('');
+    const [wrongCredentials, setWrongCredentials] = useState(false);
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -51,13 +52,19 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
                 `${API_BASE_URL}/login`, payload,
                 { withCredentials: true }
             )
-            console.log('Login successful:', document.cookie);
-
-            navigate("/dashboard");
-            console.log('Redirecting to dashboard...');
+            if (response.status !== 200) {
+                throw new Error('Login failed');
+            }
+            else {
+                console.log('Login successful:', response.data);
+                console.log('Get cookies after login:', response.data['access_token']);
+                navigate("/dashboard");
+                console.log('Redirecting to dashboard...');
+            }
 
         } catch (error) {
             console.error('Login failed:', error);
+            setWrongCredentials(true);
         }
     };
 
@@ -69,11 +76,10 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
             <input type="text" name="seeker_id" placeholder="SEEKER ID" onChange={(e) => setSeekerId(e.target.value)} />
             <button type="submit">LOG IN</button>
             <div className="form-ext-container">
+                {wrongCredentials && <p className="error-message">Wrong credentials, please try again.</p>}
                 <h3 className="form-ext">NOT A MEMBER YET?</h3>
                 <a className="form-ext" onClick={(e) => { e.preventDefault(); onSwitch(); }}><h3 className="sign-up form-ext">I WANT TO BECOME A SEEKER</h3></a>
             </div>
-                
-
         </form>
     );
 }

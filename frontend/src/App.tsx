@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginSignupContainer />} />,
-      <Route path="/dashboard" element={<Dashboard />} />,
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

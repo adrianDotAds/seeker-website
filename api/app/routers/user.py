@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 
 # Dependency to get current user
-from app import get_current_user
+from app import dependencies
 
 # For template rendering (if needed). To load HTML templates
 from fastapi.templating import Jinja2Templates
@@ -19,8 +19,3 @@ templates = Jinja2Templates(directory="app/templates")
 @router.get("/test-user")
 async def test_user():
     return {"message": "Test user endpoint"}
-
-@router.get("/dashboard")
-async def dashboard(request: Request, current_user: str = Depends(get_current_user)):
-    print(f"Rendering dashboard for user: {current_user}")
-    return templates.TemplateResponse("dashboard.html", {"request": request, "user_name": current_user})

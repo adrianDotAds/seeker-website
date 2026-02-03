@@ -20,7 +20,8 @@ app = FastAPI()
 origins = (
     "http://localhost",
     "http://localhost:8086",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "http://10.10.20.198:8086",
 )
 
 app.add_middleware(
@@ -35,7 +36,7 @@ app.add_middleware(
 # app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
-app.include_router(user.router, prefix="", tags=["User Management"])
+# app.include_router(user.router, prefix="", tags=["User Management"])
 
 # Templates directory setup
 templates = Jinja2Templates(directory="app/templates")
