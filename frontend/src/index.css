@@ -122,14 +122,19 @@ a {
 }
 
 .nav-button {
-  font-family: 'Cinzel', serif;
-  width: clamp(40px, 20vw, 120px);
-  background-color: #022251;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 76%;
+    font-family: 'Cinzel', serif;
+    width: 20%;
+    background-color: #022251;
+    color: white;
+    border: none;
+    /* padding: 10px 20px; */
+    margin: 0 0 0 0;
+    cursor: pointer;
+    display: flex;
+    font-size: clamp(10px, 2vw, 16px);
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -139,3 +144,13 @@ a {
   
 }
 
+@media screen and (max-width: 575.98px) {
+  .nav-btn-group {
+    flex-direction: column;
+    display: none;
+  }
+  .nav-button {
+    width: 100%;
+  }
+  
+}

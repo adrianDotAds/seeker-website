@@ -5,20 +5,9 @@ import { useState } from "react";
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
 
-function NavBar() {
+function NavBarButton() {
     return (
-        <div className="nav-bar">
-
-            <a>
-                <img src={logo} alt="Seeker 2.Q Logo" 
-                className="nav-logo" 
-                style={{
-                    width: 'clamp(40px, 5vw, 60px)',
-                    height: 'auto',
-                    // width: '70px'
-                }}/>
-            </a>
-            
+        <>
             <div className="nav-btn-group">
                 <button className="nav-button">
                     QUEST
@@ -36,8 +25,26 @@ function NavBar() {
                     CODEX
                 </button>
             </div>
-                
+        </>
+    );
+}
 
+function NavBar() {
+    return (
+        <div className="nav-bar">
+
+            <a>
+                <img src={logo} alt="Seeker 2.Q Logo" 
+                className="nav-logo" 
+                style={{
+                    width: 'clamp(40px, 5vw, 60px)',
+                    height: 'auto',
+                    // width: '70px'
+                }}/>
+            </a>
+            
+            <NavBarButton />
+                
             <a>
                 <img src={user} alt="User Icon"
                 className="nav-user-icon" 
