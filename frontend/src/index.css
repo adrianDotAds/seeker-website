@@ -124,7 +124,8 @@ a {
 .nav-button {
     font-family: 'Cinzel', serif;
     width: 20%;
-    background-color: #022251;
+    background-image: none;
+    background-color: #004AAD;
     color: white;
     border: none;
     /* padding: 10px 20px; */
@@ -135,6 +136,10 @@ a {
     /* flex-wrap: nowrap; */
     justify-content: center;
     align-items: center;
+}
+
+.nav-button.active {
+    background-color: #F8B31A;
 }
 
 @media screen and (max-width: 600px) {

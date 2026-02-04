@@ -5,23 +5,29 @@ import { useState } from "react";
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
 
-function NavBarButton() {
+function NavBarButtonClick() {
+    const [activeButton, setActiveButton] = useState('QUEST');
+
+    const handleButtonClick = (buttonName: string) => {
+        setActiveButton(buttonName);
+    };
+
     return (
         <>
             <div className="nav-btn-group">
-                <button className="nav-button">
+                <button className={`nav-button ${activeButton === 'QUEST' ? 'active' : ''}`} onClick={() => handleButtonClick('QUEST')}>
                     QUEST
                 </button>
-                <button className="nav-button">
+                <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => handleButtonClick('SUBGUILDS')}>
                     SUBGUILDS
                 </button>
-                <button className="nav-button"  >
+                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => handleButtonClick('RANKERS_HALL')}>
                     RANKER'S HALL
                 </button>
-                <button className="nav-button">
+                <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => handleButtonClick('SCROLLS')}>
                     SCROLLS
                 </button>
-                <button className="nav-button"  >
+                <button className={`nav-button ${activeButton === 'CODEX' ? 'active' : ''}`} onClick={() => handleButtonClick('CODEX')}>
                     CODEX
                 </button>
             </div>
@@ -43,7 +49,7 @@ function NavBar() {
                 }}/>
             </a>
             
-            <NavBarButton />
+            <NavBarButtonClick />
                 
             <a>
                 <img src={user} alt="User Icon"
