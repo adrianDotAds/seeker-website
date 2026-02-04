@@ -183,10 +183,4 @@ async def sign_up(
                             \n<a href="/">Go Back to Home</a>
                             ''', status_code=400)
     
-@router.get("/dashboard")
-async def dashboard():
-    '''
-    Docstring for dashboard
-    '''
-    return
     
