@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "api/main.py",
+      "src": "api/app/main.py",
       "use": "@vercel/python"
     },
     {
@@ -13,7 +13,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "api/main.py"
+      "destination": "api/app/main.py"
     },
     {
       "source": "/(.*)",
