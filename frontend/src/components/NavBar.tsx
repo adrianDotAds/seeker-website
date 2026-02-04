@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 // Logos, Icons etc can be imported here
@@ -21,7 +20,7 @@ function NavBarButtonClick() {
                 <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => handleButtonClick('SUBGUILDS')}>
                     SUBGUILDS
                 </button>
-                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => handleButtonClick('RANKERS_HALL')}>
+                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => handleButtonClick('RANKERS_HALL')} style={{ fontSize: 'clamp(10px, 2vw, 16px)' }}>
                     RANKER'S HALL
                 </button>
                 <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => handleButtonClick('SCROLLS')}>

@@ -108,22 +108,23 @@ a {
 }
 
 .nav-bar {
-  background-color: #022251;
+  background-image: linear-gradient(125deg, #022963, transparent);
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 0 0 0;
-  padding: 0 0 0 0;
+  padding: 1%;
 }
 
 .nav-btn-group {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .nav-button {
     font-family: 'Cinzel', serif;
-    width: 20%;
+    width: clamp(80px, 15vw, 200px);
+    height: 8vh;
     background-image: none;
     background-color: #004AAD;
     color: white;
@@ -140,6 +141,12 @@ a {
 
 .nav-button.active {
     background-color: #F8B31A;
+}
+
+/** Dashboard CSS **/
+.dashboard-container {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 @media screen and (max-width: 600px) {

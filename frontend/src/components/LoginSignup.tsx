@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Import assets and styles
 import logo from '../assets/logo.png';
@@ -8,7 +8,7 @@ import logo from '../assets/logo.png';
 // URLS
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8085';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085';
 
 
 function LoginSignupContainer() {
@@ -38,6 +38,7 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
     const [password, setPassword] = useState('');
     const [seekerId, setSeekerId] = useState('');
     const [wrongCredentials, setWrongCredentials] = useState(false);
+    console.log(email, password, seekerId);
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
-const API_BASE_URL = 'http://127.0.0.1:8085'; // Adjust to your FastAPI URL
+const API_BASE_URL = 'http://10.10.20.198:8085'; // Adjust to your FastAPI URL
 
 const Dashboard = () => {
     const [user, setUser] = useState<{ email: string } | null>(null);
@@ -38,23 +38,16 @@ const Dashboard = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div style={{ padding: '40px', fontFamily: 'sans-serif', color: '#ffffff' }}>
-            <NavBar />
-            <nav style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '20px' }}>
-                <h2>My Dashboard</h2>
-                <button onClick={handleLogout} style={{ padding: '8px 16px', cursor: 'pointer' }}>Logout</button>
-            </nav>
-
-            <main style={{ marginTop: '20px' }}>
-                <h3>Welcome, {user?.email}!</h3>
-                <p>This is a protected area visible only to logged-in users.</p>
-                
-                <div style={{ background: '#f4f4f4', padding: '20px', borderRadius: '8px', marginTop: '20px' }}>
-                    <h4>Current Session Info</h4>
-                    <pre>{JSON.stringify(user, null, 2)}</pre>
-                </div>
-            </main>
+        <div className='dashboard-container'>
+            <div style={{ padding: '0 0 0 0', margin: '0 0 0 0', fontFamily: 'sans-serif', color: '#ffffff' }}>
+                <NavBar />
+                <main className="dashboard-main">
+                    <h1>Welcome to your Dashboard, {user?.email}!</h1>
+                    <button onClick={handleLogout} className="logout-button">Logout</button>
+                </main>
+            </div>
         </div>
+            
     );
 };
 
