@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 import NavBar from './NavBar';
+import ContentsContainer from './ContentsContainer';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
 
 const Dashboard = () => {
     const [user, setUser] = useState<{ email: string } | null>(null);
     const [loading, setLoading] = useState(true);
+    const [activeButton, setActiveButton] = useState('LOGO');
     const navigate = useNavigate();
     console.log("Dashboard mounted");
+
+    const activeButtonHandler = (buttonName: string) => {
+        setActiveButton(buttonName);
+    }
 
     const userChecker = async () => {
         try {
@@ -40,9 +47,9 @@ const Dashboard = () => {
     return (
         <div className='dashboard-container'>
             <div style={{ padding: '0 0 0 0', margin: '0 0 0 0', fontFamily: 'sans-serif', color: '#ffffff' }}>
-                <NavBar />
+                <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} />
                 <main className="dashboard-main">
-                    <h1>Welcome to your Dashboard, {user?.email}!</h1>
+                    <ContentsContainer activeButton={activeButton} />
                     <button onClick={handleLogout} className="logout-button">Logout</button>
                 </main>
             </div>

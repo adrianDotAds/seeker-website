@@ -4,29 +4,25 @@ import { useState } from "react";
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
 
-function NavBarButtonClick() {
-    const [activeButton, setActiveButton] = useState('QUEST');
+function NavBarButtonClick({ activeButton, onButtonClick }) {
 
-    const handleButtonClick = (buttonName: string) => {
-        setActiveButton(buttonName);
-    };
 
     return (
         <>
             <div className="nav-btn-group">
-                <button className={`nav-button ${activeButton === 'QUEST' ? 'active' : ''}`} onClick={() => handleButtonClick('QUEST')}>
+                <button className={`nav-button ${activeButton === 'QUEST' ? 'active' : ''}`} onClick={() => { onButtonClick('QUEST')}}>
                     QUEST
                 </button>
-                <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => handleButtonClick('SUBGUILDS')}>
+                <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
                     SUBGUILDS
                 </button>
-                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => handleButtonClick('RANKERS_HALL')} style={{ fontSize: 'clamp(10px, 2vw, 16px)' }}>
+                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}} style={{ fontSize: 'clamp(10px, 2vw, 16px)' }}>
                     RANKER'S HALL
                 </button>
-                <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => handleButtonClick('SCROLLS')}>
+                <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
                     SCROLLS
                 </button>
-                <button className={`nav-button ${activeButton === 'CODEX' ? 'active' : ''}`} onClick={() => handleButtonClick('CODEX')}>
+                <button className={`nav-button ${activeButton === 'CODEX' ? 'active' : ''}`} onClick={() => { onButtonClick('CODEX')}}>
                     CODEX
                 </button>
             </div>
@@ -34,7 +30,7 @@ function NavBarButtonClick() {
     );
 }
 
-function NavBar() {
+function NavBar({ activeButton, onButtonClick }) {
     return (
         <div className="nav-bar">
 
@@ -48,7 +44,7 @@ function NavBar() {
                 }}/>
             </a>
             
-            <NavBarButtonClick />
+            <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
                 
             <a>
                 <img src={user} alt="User Icon"
