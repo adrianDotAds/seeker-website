@@ -182,3 +182,11 @@ async def sign_up(
                             <h1>Sign-up failed. Contact Your Guild for Seeker ID Connected in Your Email</h1>
                             \n<a href="/">Go Back to Home</a>
                             ''', status_code=400)
+    
+@router.get("/dashboard")
+async def dashboard():
+    '''
+    Docstring for dashboard
+    '''
+    return
+    

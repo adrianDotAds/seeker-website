@@ -7,7 +7,7 @@ import logo from '../assets/logo.png';
 // URLS
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
 
 
 function LoginSignupContainer() {

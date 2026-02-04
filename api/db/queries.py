@@ -6,8 +6,10 @@ async def verify_seeker_credentials(seeker_id: str, email: str) -> bool:
     response = supabase.table("members").select("*").eq("email", email).eq("seeker_id", seeker_id).execute()
     
     # Return True if email matches, else False
-    if response.data is not None and len(response.data) > 0:
-        print("Seeker credentials verified successfully.")
-        return True
-    print("Seeker credentials verification failed.")
-    return False
+    try:
+        if response.data is not None and len(response.data) > 0:
+            print("Seeker credentials verified successfully.")
+            return True
+    except Exception as e:
+        print("Seeker credentials verification failed.")
+        return False
