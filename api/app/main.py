@@ -23,7 +23,8 @@ origins = (
     "http://localhost:5173",
     "http://10.10.20.198:8086",
     "http://192.168.254.100:8086",
-    "http://127.0.0.1:8086"
+    "http://127.0.0.1:8086",
+    "https://seeker-site.vercel.app/"
 )
 
 app.add_middleware(
