@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
-const API_BASE_URL = 'http://10.10.20.198:8085'; // Adjust to your FastAPI URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085';
 
 const Dashboard = () => {
     const [user, setUser] = useState<{ email: string } | null>(null);
