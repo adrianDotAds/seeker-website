@@ -63,3 +63,9 @@ async def sign_up():
 async def add_member():
     print("Rendering add-member.html template")
     return templates.TemplateResponse("add-member.html", {"request": {}})
+
+# Non existing route handler
+@app.get("/{full_path:path}")
+async def catch_all(full_path: str):
+    print(f"Attempted access to non-existing route: /{full_path}")
+    return {"message": f"The route '/{full_path}' does not exist."}
