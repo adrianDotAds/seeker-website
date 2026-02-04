@@ -1,11 +1,11 @@
-# app/routers/auth.py
+# api/routers/auth.py
 
 # imports for dependency to verify current user
 import asyncio
 from fastapi import Cookie
 
 # Dependency to get current user
-from app.dependencies import validate_token
+from api.dependencies import validate_token
 
 # imports for FastAPI router
 from fastapi import APIRouter, Depends
@@ -15,14 +15,14 @@ from fastapi import Form
 from fastapi.templating import Jinja2Templates
 
 # Access to Supabase client if needed
-from app.db import *
+from api.db import *
 
 # HTML response, request and redirection
 from fastapi.responses import JSONResponse, Response
 from fastapi.requests import Request
 
 # Schemas and models
-from app.schemas import *
+from api.schemas import *
 
 template = Jinja2Templates(directory="app/templates")
 

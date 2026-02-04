@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 
 # Dependency to get current user
-from app import dependencies
+from api import dependencies
 
 # For template rendering (if needed). To load HTML templates
 from fastapi.templating import Jinja2Templates

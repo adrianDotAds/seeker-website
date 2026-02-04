@@ -9,10 +9,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
 # Importing the Supabase client and user authentication dependency
-from app.db import supabase
+from api.db import supabase
 
 # Import routers
-from app.routers import *
+from api.routers import *
 
 app = FastAPI()
 
