@@ -28,7 +28,7 @@ template = Jinja2Templates(directory="app/templates")
 
 router = APIRouter()
 
-@router.post("/login")
+@router.post("/api/login")
 async def login(payload: LoginRequest, response: Response, request: Request):
     '''
     Docstring for login
@@ -97,7 +97,7 @@ async def login(payload: LoginRequest, response: Response, request: Request):
     else:
         return JSONResponse(content={"message": "Invalid credentials"}, status_code=401)
 
-@router.get("/users/me")
+@router.get("/api/users/me")
 async def check_auth(
     access_token: str | None = Cookie(None), 
     refresh_token: str | None = Cookie(None), 
@@ -118,7 +118,7 @@ async def check_auth(
         return JSONResponse(content={"message": "Error checking auth"}, status_code=500)
 
 
-@router.get("/logout")
+@router.get("/api/logout")
 async def logout(response: Response):
     '''
     Docstring for logout
@@ -140,7 +140,7 @@ async def logout(response: Response):
 async def test_auth():
     return {"message": "Test auth endpoint"}
 
-@router.post("/sign-up/check")
+@router.post("/api/sign-up/check")
 async def sign_up(
     fname: str = Form(...),
     lname: str = Form(...),

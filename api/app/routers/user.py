@@ -16,6 +16,6 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="app/templates")
 
-@router.get("/test-user")
+@router.get("/api/test-user")
 async def test_user():
     return {"message": "Test user endpoint"}
