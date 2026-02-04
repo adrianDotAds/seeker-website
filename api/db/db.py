@@ -1,7 +1,7 @@
 # app/db/db.py
 
 # Config imports to access environment variables
-from app.config import Settings
+from api.config import Settings
 
 # Will use these to create Supabase client
 import os

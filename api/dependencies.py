@@ -1,8 +1,8 @@
-# app/dependencies.py
+# api/dependencies.py
 from fastapi import Request, HTTPException, Response, Cookie
 
 # database access
-from app.db.db import get_supabase_client
+from api.db.db import get_supabase_client
 
 async def validate_token(
         access_token: str | None = Cookie(None), 
