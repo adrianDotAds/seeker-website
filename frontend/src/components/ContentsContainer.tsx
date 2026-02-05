@@ -2,6 +2,7 @@ import { useState } from "react";
 
 // Styles for QUEST Component
 const questStyle = {
+    fontSize: 'unset',
     display: 'flex',
     flexDirection: 'column' as 'column',
     alignItems: 'center',
@@ -9,6 +10,7 @@ const questStyle = {
 };
 
 const questNavBar = {
+    fontSize: 'unset',
     display: 'flex',
     flexDirection: 'row' as 'row',
     justifyContent: 'center',
@@ -19,6 +21,7 @@ const questNavBar = {
 };
 
 const questNavBtn = {
+    fontSize: 'unset',
     backgroundImage: 'none',
     backgroundColor: '#737373',
     gap: '2%',
@@ -28,6 +31,7 @@ const questNavBtn = {
 };
 
 const questNavBtnActive = {
+    fontSize: 'unset',
     width: '100%',
     backgroundImage: 'none',
     borderTop: '3px solid #B89E68',
@@ -37,6 +41,7 @@ const questNavBtnActive = {
 }
 
 const questNavContents = {
+    fontSize: 'unset',
     backgroundColor: 'white',
     color: 'black',
     padding: '20px',
@@ -117,7 +122,7 @@ function QUESTContent() {
                 <button style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
                 <button style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
             </div>
-            <div style={{width: '100%'}}>
+            <div style={{width: '100%', fontSize: 'unset'}}>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}

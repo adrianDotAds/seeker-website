@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import NavBar from './NavBar';
 import ContentsContainer from './ContentsContainer';
+import { NavBarButtonClick, LogoAndProfileOnly } from './NavBar';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
 
@@ -44,12 +45,20 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard-container'>
-            <div style={{ padding: '0 0 0 0', margin: '0 0 0 0', fontFamily: 'sans-serif', color: '#ffffff' }}>
-                <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} />
+            <div style={{ padding: '0 0 0 0', margin: '0 0 0 0', fontFamily: 'sans-serif', color: '#ffffff', height: '100vh' }}>
+                <div className='logo-and-profile-only-container'>
+                    <LogoAndProfileOnly />
+                </div>
+                <div className='nav-menu-top'>
+                    <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} />
+                </div>
                 <main className="dashboard-main">
                     <ContentsContainer activeButton={activeButton} />
                     <button onClick={handleLogout} className="logout-button">Logout</button>
                 </main>
+                <div className="nav-menu-bottom">
+                    <NavBarButtonClick activeButton={activeButton} onButtonClick={activeButtonHandler} />
+                </div>
             </div>
         </div>
             

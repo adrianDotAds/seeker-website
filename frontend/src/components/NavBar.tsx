@@ -32,49 +32,67 @@ function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: stri
     );
 }
 
-function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
-    const[isMenuOpen, setIsMenuOpen] =  useState(false);
-
-    function toggleMenu() {
-        setIsMenuOpen(!isMenuOpen);
-        if (isMenuOpen === false) {
-            document.querySelector('.nav-btn-group')!.setAttribute('style', 'display: flex; flex-direction: column; position: absolute; top: 52px; left: 0px;');
-        } else {
-            document.querySelector('.nav-btn-group')!.setAttribute('style', 'display: none;');
-        }
-    }
-    
+function LogoAndProfileOnly() {
     return (
-        <div className="nav-bar">
+        <>
+            <div className='logo-and-profile-only'>
+                <a>
+                    <img src={logo} alt="Seeker 2.Q Logo" 
+                    className="nav-logo" 
+                    style={{
+                        width: 'clamp(40px, 5vw, 60px)',
+                        height: 'auto',
+                        // width: '70px'
+                    }}/>
+                </a>
 
-            <a>
-                <img src={logo} alt="Seeker 2.Q Logo" 
-                className="nav-logo" 
-                style={{
-                    width: 'clamp(40px, 5vw, 60px)',
-                    height: 'auto',
-                    // width: '70px'
-                }}/>
-            </a>
-            
-            <div>
-                <div className="nav-menu-icon" onClick={toggleMenu}>
-                    <img src={menu} alt="Menu Icon" style={{width:"100%"}}/>
-                </div>
-                <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
+                <a>
+                    <img src={user} alt="User Icon"
+                    className="nav-user-icon" 
+                    style={{
+                        width: 'clamp(40px, 5vw, 60px)',
+                        height: 'auto',
+                    }}/>
+                </a>
+
             </div>
                 
-            <a>
-                <img src={user} alt="User Icon"
-                className="nav-user-icon" 
-                style={{
-                    width: 'clamp(40px, 5vw, 60px)',
-                    height: 'auto',
-                }}/>
-            </a>
-            
-        </div>
+        </>
+    );
+}
+
+function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
+    return (
+        <>
+            <div className="nav-bar">
+                <a>
+                    <img src={logo} alt="Seeker 2.Q Logo" 
+                    className="nav-logo" 
+                    style={{
+                        width: 'clamp(40px, 5vw, 60px)',
+                        height: 'auto',
+                        // width: '70px'
+                    }}/>
+                </a>
+                
+                <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <div className='nav-menu-top'>
+                        <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
+                    </div>
+                </div>
+                    
+                <a>
+                    <img src={user} alt="User Icon"
+                    className="nav-user-icon" 
+                    style={{
+                        width: 'clamp(40px, 5vw, 60px)',
+                        height: 'auto',
+                    }}/>
+                </a>
+            </div>
+        </>
     );
 }
 
 export default NavBar;
+export { NavBarButtonClick, LogoAndProfileOnly };
