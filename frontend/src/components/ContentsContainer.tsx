@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const questStyle = {
     border: '2px solid black',
-    padding: '10px',
     backgroundColor: '#f0f0f0',
 };
 
@@ -58,7 +57,7 @@ function ContentsContainer({ activeButton }: { activeButton: string }) {
 // QUEST Content Component
 function QUESTContent() {
     // State to manage active tab [Events, Hackatons, Workshops, Recreational, Online Learning]
-    const [activeQuestTab, setActiveQuestTab] = useState('Events');
+    const [activeQuestTab, setActiveQuestTab] = useState('EVENTS');
     
     function EventTab() {
         return (
@@ -110,11 +109,14 @@ function QUESTContent() {
                 <button style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
                 <button style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
             </div>
+            <div>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}
             {activeQuestTab === 'RECREATIONAL' && <RecreationalTab />}
             {activeQuestTab === 'ONLINE_LEARNING' && <OnlineLearningTab />}
+            </div>
+            
 
         </div>
     );
