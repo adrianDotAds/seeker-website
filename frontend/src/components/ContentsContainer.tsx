@@ -1,8 +1,11 @@
 import { useState } from "react";
 
+// Styles for QUEST Component
 const questStyle = {
-    border: '2px solid black',
-    backgroundColor: '#f0f0f0',
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    alignItems: 'center',
+    width: '100%',
 };
 
 const questNavBar = {
@@ -33,6 +36,11 @@ const questNavBtnActive = {
     color: '#004AAD',
 }
 
+const questNavContents = {
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '20px',
+};
 
 // Main Contents Container Component - Ito yung irerender sa dashboard depende sa active button [Quest, Subguilds, Rankers Hall, Scrolls, Codex]
 function ContentsContainer({ activeButton }: { activeButton: string }) {
@@ -61,7 +69,7 @@ function QUESTContent() {
     
     function EventTab() {
         return (
-            <div>
+            <div style={questNavContents}>
                 EVENT TAB CONTENT
             </div>
         );
@@ -69,7 +77,7 @@ function QUESTContent() {
 
     function HackatonTab() {
         return (
-            <div>
+            <div style={questNavContents}>
                 HACKATON TAB CONTENT
             </div>
         );
@@ -77,7 +85,7 @@ function QUESTContent() {
 
     function WorkShopTab() {
         return (
-            <div>
+            <div style={questNavContents}>
                 WORKSHOP TAB CONTENT
             </div>
         );
@@ -85,7 +93,7 @@ function QUESTContent() {
 
     function RecreationalTab() {
         return (
-            <div>
+            <div style={questNavContents}>
                 RECREATIONAL TAB CONTENT
             </div>
         );
@@ -93,7 +101,7 @@ function QUESTContent() {
 
     function OnlineLearningTab() {
         return (
-            <div>
+            <div style={questNavContents}>
                 ONLINE LEARNING TAB CONTENT
             </div>
         );
@@ -109,7 +117,7 @@ function QUESTContent() {
                 <button style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
                 <button style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
             </div>
-            <div>
+            <div style={{width: '100%'}}>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}

@@ -1,7 +1,10 @@
+// React Imports
+import { useState } from 'react';
 
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
+import menu from '../assets/menu.png';
 
 function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
 
@@ -30,6 +33,17 @@ function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: stri
 }
 
 function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
+    const[isMenuOpen, setIsMenuOpen] =  useState(false);
+
+    function toggleMenu() {
+        setIsMenuOpen(!isMenuOpen);
+        if (isMenuOpen === false) {
+            document.querySelector('.nav-btn-group')!.setAttribute('style', 'display: flex; flex-direction: column; position: absolute; top: 52px; left: 0px;');
+        } else {
+            document.querySelector('.nav-btn-group')!.setAttribute('style', 'display: none;');
+        }
+    }
+    
     return (
         <div className="nav-bar">
 
@@ -43,7 +57,12 @@ function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButto
                 }}/>
             </a>
             
-            <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
+            <div>
+                <div className="nav-menu-icon" onClick={toggleMenu}>
+                    <img src={menu} alt="Menu Icon" style={{width:"100%"}}/>
+                </div>
+                <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
+            </div>
                 
             <a>
                 <img src={user} alt="User Icon"
