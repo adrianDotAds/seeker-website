@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';

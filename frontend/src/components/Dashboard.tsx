@@ -8,7 +8,6 @@ import ContentsContainer from './ContentsContainer';
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
 
 const Dashboard = () => {
-    const [user, setUser] = useState<{ email: string } | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeButton, setActiveButton] = useState('LOGO');
     const navigate = useNavigate();
@@ -22,7 +21,6 @@ const Dashboard = () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/users/me`, { withCredentials: true });
             console.log("User data fetched:", response.data);
-            setUser(response.data.user);
             console.log("User state set:", response.data.user);
         } catch (err) {
             console.error("Error fetching user data", err);
