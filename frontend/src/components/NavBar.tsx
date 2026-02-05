@@ -1,10 +1,8 @@
 // React Imports
-import { useState } from 'react';
 
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
-import menu from '../assets/menu.png';
 
 function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
 
