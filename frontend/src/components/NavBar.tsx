@@ -4,7 +4,7 @@ import { useState } from "react";
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
 
-function NavBarButtonClick({ activeButton, onButtonClick }) {
+function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
 
 
     return (
@@ -30,7 +30,7 @@ function NavBarButtonClick({ activeButton, onButtonClick }) {
     );
 }
 
-function NavBar({ activeButton, onButtonClick }) {
+function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
     return (
         <div className="nav-bar">
 
