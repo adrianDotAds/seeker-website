@@ -1,8 +1,8 @@
 /* Component NavBar Styles */
 .nav-button {
     /* Size */
-    font-size: 100%;
     padding: 10px 20px;
+    width: 100%;
     /* Color Scheme */
     background-color: #004AAD;
     transition: background-color 0.3s ease;
@@ -11,6 +11,11 @@
     border: none;
     cursor: pointer;
     border-radius: 8px;
+}
+
+button.nav-button {
+    padding: 2%;
+    width: 50%;
 }
 
 .nav-button:hover {
@@ -31,4 +36,26 @@
 
 .nav-bottom {
     display: none;
+}
+
+.rhbutt {
+    display: block;
+}
+
+.navBarButtonsStyle {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    button.nav-button {
+        font-size: 7px; 
+        padding: 1%;
+        height: 40%;
+    }
+    .rhbutt {
+        font-size: 3%;
+    }
+    .nav-bottom {
+        display: flex;
+    }
 }

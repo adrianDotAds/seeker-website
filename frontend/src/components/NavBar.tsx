@@ -72,7 +72,7 @@ export function ClickableButton({ activeButton, onButtonClick }: { activeButton:
                 <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
                     SUBGUILDS
                 </button>
-                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}}>
+                <button className={`nav-button rhbutt ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}}>
                     RANKER'S HALL
                 </button>
                 <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
