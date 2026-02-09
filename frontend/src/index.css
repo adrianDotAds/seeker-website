@@ -1,3 +1,16 @@
+/* Global Styles */
+:root {
+    --primary-color: #004AAD;
+    --secondary-color: #F8B31A;
+    --background-color: #FFFFFF;
+    --text-color: #333333;
+    --font-family: 'Cinzel', serif;
+    background-image: linear-gradient(to bottom, #000000, #021B3D, #022A66, #053576, #04419C, #0672F8);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 /* Component NavBar Styles */
 .nav-button {
     /* Size */
@@ -16,6 +29,7 @@
 button.nav-button {
     padding: 2%;
     width: 50%;
+    font-size: 12px;
 }
 
 .nav-button:hover {
@@ -43,19 +57,29 @@ button.nav-button {
 }
 
 .navBarButtonsStyle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
+    /* Adjust NavBar for smaller screens */
     button.nav-button {
         font-size: 7px; 
         padding: 1%;
-        height: 40%;
+        height: 80%;
     }
     .rhbutt {
         font-size: 3%;
     }
     .nav-bottom {
         display: flex;
+    }
+    .navBarContainerStyle {
+        margin: 0 3% 0 3%;
+    }
+    .navBarButtonsStyle {
+        margin: 0 1% 0 1%;
     }
 }

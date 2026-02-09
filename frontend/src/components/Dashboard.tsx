@@ -66,7 +66,7 @@ const Dashboard = () => {
 
     // Styles
     const dashboardContainerStyle: React.CSSProperties = {
-        backgroundColor: '#065c22', //To Delete later
+        // backgroundColor: '#065c22', //To Delete later
         height: '100%', // Full height of the viewport
         width: '100%', // Full width of the viewport
         // overflow: 'hidden' as const, // To prevent scrolling, can be removed later if needed
@@ -87,13 +87,13 @@ const Dashboard = () => {
         justifyContent: 'center',
         
         // Colors
-        backgroundColor: 'orange', //To Delete later
+        // backgroundColor: 'orange', //To Delete later
         } as const;
 
     const dashboardMainStyle: React.CSSProperties = {
         // Size
         width: '100%', // Full width of the dashboard
-        height: '80%', // 80% of the dashboard height
+        height: '85%', // 85% of the dashboard height
 
         // Flex
         display: 'flex',
@@ -101,13 +101,13 @@ const Dashboard = () => {
         alignItems: 'center',
 
         // Colors
-        backgroundColor: 'purple', //To Delete later
+        // backgroundColor: 'purple', //To Delete later
     };
 
     const navMenuBottomStyle: React.CSSProperties = {
         // Size
         width: '100%', // Full width of the dashboard
-        height: '10%', // 10% of the dashboard height
+        height: '5%', // 5% of the dashboard height
 
         // Flex
         flexDirection: 'row' as 'row',
@@ -115,7 +115,7 @@ const Dashboard = () => {
         alignItems: 'center',
 
         // Colors
-        backgroundColor: 'blue', //To Delete later
+        // backgroundColor: 'blue', //To Delete later
     };
 
     // Change styles based on window size

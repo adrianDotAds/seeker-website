@@ -38,9 +38,9 @@ function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButto
 
     
     const navBarContainerStyle: React.CSSProperties = {
-        backgroundColor: '#065c22', //To Delete later
+        // backgroundColor: '#065c22', //To Delete later
         width: '100%',
-        height: '100%',
+        height: '80%',
         display: 'flex',
         flexWrap: 'wrap' as 'wrap',
         alignItems: 'center',
@@ -93,9 +93,10 @@ export function ClickableButton({ activeButton, onButtonClick }: { activeButton:
         flexDirection: 'row' as 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        alignContent: 'center',
         gap: '1%',
         // Colors
-        backgroundColor: '#065c22', //To Delete later  
+        // backgroundColor: '#065c22', //To Delete later  
     };
     return (
         Main()
