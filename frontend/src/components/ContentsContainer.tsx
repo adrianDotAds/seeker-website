@@ -1,51 +1,86 @@
 import { useState } from "react";
 
 // Styles for QUEST Component
-const questStyle = {
-    fontSize: 'unset',
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    alignItems: 'center',
+const questContainerStyle: React.CSSProperties = {
     width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignContent: 'center',
+    /* margin: 1%; */
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'red',
 };
 
 const questNavBar = {
-    fontSize: 'unset',
+    backgroundColor: 'yellow',
     display: 'flex',
     flexDirection: 'row' as 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     alignContent: 'center',
-    gap: '4px',
+    gap: '0.3%',
     width: '100%',
+    height: '4vw',
 };
 
 const questNavBtn = {
-    fontSize: 'unset',
+    height: '80%',
+    width: '80%',
+    // fontSize: 'clamp(7px, 2vw, 15px)',
+    fontSize: '1vw',
     backgroundImage: 'none',
-    backgroundColor: '#737373',
+    backgroundColor: 'red',
     gap: '2%',
     color: 'white',
     borderRadius: '12px 12px 0px 0px',
-    width: '100%',
 };
 
 const questNavBtnActive = {
-    fontSize: 'unset',
-    width: '100%',
+    fontSize: '1.2vw',
+    width: '90%',
+    height: '80%',
     backgroundImage: 'none',
     borderTop: '3px solid #B89E68',
     borderRadius: '12px 12px 0px 0px',
-    backgroundColor: 'white',
+    backgroundColor: 'green',
     color: '#004AAD',
 }
 
 const questNavContents = {
-    fontSize: 'unset',
+    fontSize: 'clamp(7px, 2vw, 15px)',
     backgroundColor: 'white',
     color: 'black',
     padding: '20px',
 };
+
+// QuestButton Contents Styles
+const questButtonContentsStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    color: 'black',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
+
+const QUESTContentStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    color: 'black',
+    width: '100%',
+    height: '90%',
+};
+// Mobile Responsiveness Styles
+if (window.innerWidth && window.innerWidth < 768) {
+    questNavBar.height = '10vw';
+}
+else if (window.innerWidth && window.innerWidth >= 768) {
+    QUESTContentStyle.height = '85%';
+}
 
 // Main Contents Container Component - Ito yung irerender sa dashboard depende sa active button [Quest, Subguilds, Rankers Hall, Scrolls, Codex]
 function ContentsContainer({ activeButton }: { activeButton: string }) {
@@ -114,15 +149,15 @@ function QUESTContent() {
 
     return (
         // QUEST Container with Navigation Bar
-        <div className="quest-container" style={questStyle}>
-            <div style={questNavBar}>
-                <button style={activeQuestTab === 'EVENTS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('EVENTS')}>QEvents</button>
-                <button style={activeQuestTab === 'HACKATONS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('HACKATONS')}>HACKATONS</button>
-                <button style={activeQuestTab === 'WORKSHOPS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('WORKSHOPS')}>WORKSHOPS</button>
-                <button style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
-                <button style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
+        <div className="quest-container" style={questContainerStyle}>
+            <div className="quest-nav-bar" style={questNavBar}>
+                <button className='quest-nav-btn-active quest-nav-btn' style={activeQuestTab === 'EVENTS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('EVENTS')}>EVENTS</button>
+                <button className='quest-nav-btn-active quest-nav-btn' style={activeQuestTab === 'HACKATONS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('HACKATONS')}>HACKATONS</button>
+                <button className='quest-nav-btn-active quest-nav-btn' style={activeQuestTab === 'WORKSHOPS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('WORKSHOPS')}>WORKSHOPS</button>
+                <button className='quest-nav-btn-active quest-nav-btn' style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
+                <button className='quest-nav-btn-active quest-nav-btn' style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
             </div>
-            <div style={{width: '100%', fontSize: 'unset'}}>
+            <div className="quest-content" style={QUESTContentStyle}>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}
@@ -138,7 +173,7 @@ function QUESTContent() {
 // SUBGUILDS Content Component
 function SUBGUILDSContent() {
     return (
-        <div>
+        <div style={questButtonContentsStyle}>
             SUBGUILDS CONTENT
         </div>
     );

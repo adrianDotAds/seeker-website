@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 // Import assets and styles
@@ -9,8 +9,68 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
 
+const LoginSignupWrapper: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100vh',
+  width: '100vw',
+//   backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background};
+};
+
+const LoginSignupContainerStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '80vh',
+    width: '25vw',
+    backgroundColor: 'white',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    padding: '2rem',
+    border: '25px solid #004AAD',
+};
+
+const Form: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    gap: '1rem',
+};
+
+const inputStyle: React.CSSProperties = {
+    width: '80%',
+    padding: '0.5rem',
+    paddingLeft: '1rem',
+    borderRadius: '0.3rem',
+    border: 'none',
+    backgroundColor: '#EFF2F8',
+    color: 'black',
+};
+
+// Mobile responsiveness
+if (window.innerWidth && window.innerWidth < 768) {
+    LoginSignupContainerStyle.width = '70vw';
+    LoginSignupContainerStyle.height = '60vh';
+}
 
 function LoginSignupContainer() {
+    // Initial viewport width
+    const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+    console.log(windowSize);
+    // Update viewport when resized
+    useEffect(() => {
+        const handleResize = () => {
+            // Force re-render on resize to apply responsive styles
+            setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const [isLogin, setIsLogin] = useState(true);
     const toggleForm = () => {
@@ -19,9 +79,9 @@ function LoginSignupContainer() {
 
     return (
         <>
-        <div className="login-signup-wrapper">
+        <div className="login-signup-wrapper" style={LoginSignupWrapper}>
             <img src={logo} alt="Seeker 2.Q Logo" className="logo" />
-            <div className="login-signup-container">
+            <div className="login-signup-container" style={LoginSignupContainerStyle}>
                 {isLogin ? <LoginForm onSwitch={toggleForm} /> : <SignupForm onSwitch={toggleForm} />}
             </div>
         </div>
@@ -69,11 +129,11 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
     };
 
     return (
-        <form className="login-form form" onSubmit={handleLogin}>
+        <form className="login-form form" style={Form} onSubmit={handleLogin}>
             <h2>SEEKER AUTHENTICATION</h2>
-            <input type="text" name="email" placeholder="EMAIL" onChange={(e) => setEmail(e.target.value)}/>
-            <input type="password" name="password" placeholder="PASSWORD" onChange={(e) => setPassword(e.target.value)} />
-            <input type="text" name="seeker_id" placeholder="SEEKER ID" onChange={(e) => setSeekerId(e.target.value)} />
+            <input type="text" name="email" placeholder="EMAIL" style={inputStyle} onChange={(e) => setEmail(e.target.value)}/>
+            <input type="password" name="password" placeholder="PASSWORD" style={inputStyle} onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" name="seeker_id" placeholder="SEEKER ID" style={inputStyle} onChange={(e) => setSeekerId(e.target.value)} />
             <button type="submit">LOG IN</button>
             <div className="form-ext-container">
                 {wrongCredentials && <p className="error-message">Wrong credentials, please try again.</p>}
@@ -86,7 +146,7 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 
 function SignupForm({onSwitch}: {onSwitch: () => void}) {
     return (
-        <form className="signup-form form">
+        <form className="signup-form form" style={Form}>
             <h2>SEEKER REGISTRATION</h2>
             <div className="name-inputs">
                 <input type="text" name="fname" placeholder="FIRST NAME" />

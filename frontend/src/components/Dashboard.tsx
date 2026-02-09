@@ -22,11 +22,10 @@ const Dashboard = () => {
         return (
             <div style={dashboardContainerStyle}> {/* 100% height and width of the viewport */}
                 <div className='nav-top' style={navMenuTopStyle}> {/* 10% height and 100% width of dashboardContainerStyle*/}
-                    <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} />
+                    <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} handleLogout={handleLogout} />
                 </div>
                 <main style={dashboardMainStyle}> {/* 80% height and 100% width of dashboardContainerStyle */}
                     <ContentsContainer activeButton={activeButton} />
-                    <button onClick={handleLogout} className="logout-button">Logout</button>
                 </main>
                 <div className='nav-bottom' style={navMenuBottomStyle}> {/* 10% height and 100% width of dashboardContainerStyle */}
                     <ClickableButton activeButton={activeButton} onButtonClick={activeButtonHandler} />
@@ -92,7 +91,8 @@ const Dashboard = () => {
 
     const dashboardMainStyle: React.CSSProperties = {
         // Size
-        width: '100%', // Full width of the dashboard
+        width: '90%', // Full width of the dashboard
+        margin: 'auto', // Center the main content
         height: '85%', // 85% of the dashboard height
 
         // Flex

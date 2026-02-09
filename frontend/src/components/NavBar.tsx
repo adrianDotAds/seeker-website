@@ -1,18 +1,32 @@
 // React Imports
-
+import React, { useState, useEffect } from 'react';
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
 
-function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
+// Components
+import Profile from './Profile';
+
+// Profile Tab Styles
+const profileTab: React.CSSProperties = {
+    display: 'none',
+    position: 'absolute' as 'absolute',
+}
+
+function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: string, onButtonClick: (buttonName: string) => void, handleLogout: () => void }) {
     /* This is the Main navigation bar component to navigate between different sections */
     // Base height and width: 10% and 100% of the dashboard respectively
+    
+    // Variable Declarations
+    const [isProfileVisible, setProfileVisible] = useState(false);
+    
     function Main() {
         const navBarButtonsStyle: React.CSSProperties = {
             height: '100%', 
             width: '77%'
         };
 
+        console.log(isProfileVisible)
         // Change styles based on window size
         if (window.innerWidth && window.innerWidth < 768) {
             // Mobile view adjustments
@@ -22,7 +36,7 @@ function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButto
         return (
             <div className='navBarContainerStyle' style={navBarContainerStyle}>
                 <div style={{height:'100%', width:'10%'}}>
-                    <img src={logo} alt="Logo" style={imageStyle} />
+                    <img src={logo} alt="Logo" style={imageStyle}/>
                 </div>
                 <div className='navBarButtonsStyle' style={navBarButtonsStyle}>
                     <div className='hideOnMobile'>
@@ -30,7 +44,10 @@ function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButto
                     </div>
                 </div>
                 <div style={{height:'100%', width:'10%'}}>
-                    <img src={user} alt="User" style={imageStyle}/>
+                    <img src={user} alt="User" style={imageStyle} onClick={() => profileToggle(isProfileVisible, setProfileVisible)}/>
+                    <div className='profile-tab' style={profileTab}>
+                        <Profile handleLogout={() => {handleLogout()}}/>
+                    </div>
                 </div>
             </div>
         );
@@ -59,6 +76,18 @@ function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButto
     return (
         Main()
     );
+}
+
+function profileToggle(isProfileVisible: boolean, setProfileVisible: React.Dispatch<React.SetStateAction<boolean>>) {
+    setProfileVisible(!isProfileVisible);
+    // Display profile tab if isProfileVisible is True
+    const profileTabElement = document.querySelector('.profile-tab') as HTMLElement;
+    if (!isProfileVisible) {
+        profileTabElement.style.display = 'block';
+    }
+    else {
+        profileTabElement.style.display = 'none';
+    }
 }
 
 export function ClickableButton({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
