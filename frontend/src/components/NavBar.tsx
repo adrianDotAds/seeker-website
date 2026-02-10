@@ -1,5 +1,5 @@
 // React Imports
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
