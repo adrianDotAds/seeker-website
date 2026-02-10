@@ -88,10 +88,10 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
             <input type="password" name="password" placeholder="PASSWORD" className={styles.inputStyle} onChange={(e) => setPassword(e.target.value)} />
             <input type="text" name="seeker_id" placeholder="SEEKER ID" className={styles.inputStyle} onChange={(e) => setSeekerId(e.target.value)} />
             <button type="submit">LOG IN</button>
-            <div className="form-ext-container">
-                {wrongCredentials && <p className="error-message">Wrong credentials, please try again.</p>}
-                <h3 className="form-ext">NOT A MEMBER YET?</h3>
-                <a className="form-ext" onClick={(e) => { e.preventDefault(); onSwitch(); }}><h3 className="sign-up form-ext">I WANT TO BECOME A SEEKER</h3></a>
+            <div className={styles.formExtContainer}>
+                {wrongCredentials && <p className={styles.errorMessage}>Wrong credentials, please try again.</p>}
+                <h3 className={styles.formExt}>NOT A MEMBER YET?</h3>
+                <a className={styles.formExt} onClick={(e) => { e.preventDefault(); onSwitch(); }}><h3 className={styles.signUp}>I WANT TO BECOME A SEEKER</h3></a>
             </div>
         </form>
     );

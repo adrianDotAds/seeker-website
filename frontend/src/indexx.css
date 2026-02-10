@@ -1,0 +1,113 @@
+/* Global Styles */
+:root {
+    --primary-color: #004AAD;
+    --secondary-color: #F8B31A;
+    --background-color: #FFFFFF;
+    --text-color: #333333;
+    --font-family: 'Cinzel', serif;
+    background-image: linear-gradient(to bottom, #000000, #021B3D, #022A66, #053576, #04419C, #0672F8);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: var(--font-family);
+}
+
+/* Global Styles for Login and Signup */
+input::placeholder {
+  font-size: var(--font-family);
+  font-weight: bold;
+  line-height: 50px;
+  color: #A9A9A9;
+  padding-left: 10%;
+}
+
+/* Component NavBar Styles */
+.nav-button {
+    /* Size */
+    padding: 10px 20px;
+    width: 100%;
+    height: 80%;
+    /* Color Scheme */
+    background-color: #004AAD;
+    transition: background-color 0.3s ease;
+    color: white;
+    /* Other Styles */
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.nav-button {
+    padding: 2%;
+    width: 50%;
+    font-size: 1vw;
+}
+
+.nav-button:hover {
+    background-color: #F8B31A;
+}
+
+.nav-button.active {
+    background-color: #F8B31A;
+    font-weight: bold;
+}
+
+.navBarContainerStyle {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-bottom {
+    display: none;
+}
+
+.rhbutt {
+    display: flex;
+}
+
+.navBarButtonsStyle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Component Contents Container Styles */
+.contents-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #B89E68;
+}
+
+.quest-container {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    /* Adjust NavBar for smaller screens */
+    button.nav-button {
+        padding: 1%;
+        height: 80%;
+    }
+    .rhbutt {
+        font-size: 3%;
+    }
+    .nav-bottom {
+        display: flex;
+    }
+    .navBarContainerStyle {
+        margin: 0 3% 0 3%;
+    }
+    .navBarButtonsStyle {
+        margin: 0 1% 0 1%;
+    }
+}
