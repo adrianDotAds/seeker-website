@@ -1,0 +1,47 @@
+.loginSignupWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.loginSignupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 30vw;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 25px solid #004AAD;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.inputStyle {
+    width: 80%;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #EFF2F8;
+    color: 'black',
+}
+
+@media screen and (max-width: 768px) {
+    .loginSignupContainer {
+        width: 60vw;
+    }
+}
