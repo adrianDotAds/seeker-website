@@ -1,0 +1,218 @@
+main{
+}
+.dashboardMain {
+    /* Size and position */
+    width: 100%;
+    margin: auto;
+    height: 90%;
+
+    /* Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Color Scheme */
+    background-color: #B89E68;
+}
+
+.dashboardContainer{
+    height: 100%;
+    width: 100%;
+}
+
+.navMenuTop {
+    /* Size and position */
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.navMenuBottom {
+    /* Size and position */
+    display: none;
+    height: 5%;
+    width: 100%;
+    margin-top: 1.5%;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NavBar CSS */
+.profileTab {
+    display: none;
+    position: absolute;
+    /* top: 60px;
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000; */
+}
+
+.navButton {
+    /* Size */
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+    /* Color Scheme */
+    background-color: #004AAD;
+    transition: background-color 0.3s ease;
+    color: white;
+    /* Other Styles */
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navButton:active {
+    background-color: #F8B31A;
+}
+
+.navButton:hover {
+    background-color: #F8B31A;
+}
+
+.navBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+    margin-inline-start: 5%;
+    margin-inline-end: 5%;
+}
+
+.navBarButtons {
+    height: 100%;
+    width: 100%;
+    /* Flexbox */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 1%;
+}
+
+.hideOnMobile {
+    /* Size and position */
+    width: 100%;
+    height: 85%;
+
+    /* Flexbox */
+    display: flex;
+    justify-content: center;
+}
+
+.homeContainer {
+    color: #B89E68;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    font-size: 5dvw;
+}
+
+/* Contents Container */
+.contentsContainer {
+    /* Size and position */
+    width: 90%;
+    height: 100%;
+    background-color: orange;
+
+}
+
+/* QUEST Content */
+.questContainer {
+    /* Size and position */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #B89E68;
+}
+
+.questNavBar {
+    /* Size and position */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: center;
+    gap: 0.3%;
+    width: 100%;
+    height: 10%;
+}
+
+.questContent {
+    background-color: white;
+    color: black;
+    width: 100%;
+    height: 90%;
+}
+
+.questNavBtn {
+    height: 80%;
+    width: 80%;
+    font-size: 1vw;
+    background-image: none;
+    background-color: #737373;
+    gap: 2%;
+    color: white;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.questNavBtnActive {
+    font-size: 1.2vw;
+    width: 90%;
+    height: 80%;
+    background-image: none;
+    border: none;
+    border-top: 3px solid #B89E68;
+    border-radius: 12px 12px 0px 0px;
+    background-color: white;
+    color: #004AAD;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboardMain {
+        height: 83%; /* Adjust height for mobile to insert navbuttons under*/
+    }
+    .hideOnMobile {
+        display: none;
+        transition: all 5s ease-in-out;
+    }
+
+    .navMenuBottom {
+        display: flex;
+    }
+    .navButton {
+        font-size: 0.5em;
+        width: 18dvw;
+    }
+
+    /* Adjust navBarContainer for mobile */
+    .navBarButtons {
+        width: 80%;
+    }
+
+    /* Quest Contents */
+    .questContainer {
+    }
+    .questNavBar {
+    }
+}

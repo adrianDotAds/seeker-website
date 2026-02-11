@@ -83,11 +83,11 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 
     return (
         <form className={styles.form} onSubmit={handleLogin}>
-            <h2>SEEKER AUTHENTICATION</h2>
+            <h2 className={styles.h2}>SEEKER AUTHENTICATION</h2>
             <input type="text" name="email" placeholder="EMAIL" className={styles.inputStyle} onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" name="password" placeholder="PASSWORD" className={styles.inputStyle} onChange={(e) => setPassword(e.target.value)} />
             <input type="text" name="seeker_id" placeholder="SEEKER ID" className={styles.inputStyle} onChange={(e) => setSeekerId(e.target.value)} />
-            <button type="submit">LOG IN</button>
+            <button className={styles.buttonSubmit} type="submit">LOG IN</button>
             <div className={styles.formExtContainer}>
                 {wrongCredentials && <p className={styles.errorMessage}>Wrong credentials, please try again.</p>}
                 <h3 className={styles.formExt}>NOT A MEMBER YET?</h3>
@@ -100,7 +100,7 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 function SignupForm({onSwitch}: {onSwitch: () => void}) {
     return (
         <form className={styles.signupForm}>
-            <h2>SEEKER REGISTRATION</h2>
+            <h2 className={styles.h2}>SEEKER REGISTRATION</h2>
             <div className="name-inputs">
                 <input type="text" name="fname" placeholder="FIRST NAME" className={styles.inputStyle} />
                 <input type="text" name="lname" placeholder="LAST NAME" className={styles.inputStyle} />
@@ -108,7 +108,7 @@ function SignupForm({onSwitch}: {onSwitch: () => void}) {
             <input type="text" name="email" placeholder="EMAIL" className={styles.inputStyle} />
             <input type="password" name="password" placeholder="PASSWORD" className={styles.inputStyle} />
             <input type="text" name="seeker_id" placeholder="SEEKER ID" className={styles.inputStyle} />
-            <button type="submit">Signup</button>
+            <button className={styles.buttonSubmit} type="submit">Signup</button>
             <div className="form-ext-container">
                 <h3 className="form-ext">ALREADY A SEEKER?</h3>
                 <a className="form-ext" onClick={(e) => { e.preventDefault(); onSwitch(); }}><h3 className="sign-up form-ext">LOG IN HERE</h3></a>

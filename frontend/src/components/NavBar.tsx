@@ -3,15 +3,10 @@ import React, { useState } from 'react';
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
+import styles from './MainStyle.module.css';
 
 // Components
 import Profile from './Profile';
-
-// Profile Tab Styles
-const profileTab: React.CSSProperties = {
-    display: 'none',
-    position: 'absolute' as 'absolute',
-}
 
 function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: string, onButtonClick: (buttonName: string) => void, handleLogout: () => void }) {
     /* This is the Main navigation bar component to navigate between different sections */
@@ -21,31 +16,26 @@ function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: s
     const [isProfileVisible, setProfileVisible] = useState(false);
     
     function Main() {
-        const navBarButtonsStyle: React.CSSProperties = {
-            height: '100%', 
-            width: '77%'
-        };
 
         console.log(isProfileVisible)
         // Change styles based on window size
         if (window.innerWidth && window.innerWidth < 768) {
             // Mobile view adjustments
-            navBarButtonsStyle.visibility = 'hidden' as 'hidden';
         }
 
         return (
-            <div className='navBarContainerStyle' style={navBarContainerStyle}>
+            <div className={styles.navBarContainer}>
                 <div style={{height:'100%', width:'10%'}}>
                     <img src={logo} alt="Logo" style={imageStyle}/>
                 </div>
-                <div className='navBarButtonsStyle' style={navBarButtonsStyle}>
-                    <div className='hideOnMobile'>
+                <div className={styles.navBarButtons}>
+                    <div className={styles.hideOnMobile}>
                         <ClickableButton activeButton={activeButton} onButtonClick={onButtonClick} />
                     </div>
                 </div>
                 <div style={{height:'100%', width:'10%'}}>
                     <img src={user} alt="User" style={imageStyle} onClick={() => profileToggle(isProfileVisible, setProfileVisible)}/>
-                    <div className='profile-tab' style={profileTab}>
+                    <div className={styles.profileTab}>
                         <Profile handleLogout={() => {handleLogout()}}/>
                     </div>
                 </div>
@@ -81,7 +71,7 @@ function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: s
 function profileToggle(isProfileVisible: boolean, setProfileVisible: React.Dispatch<React.SetStateAction<boolean>>) {
     setProfileVisible(!isProfileVisible);
     // Display profile tab if isProfileVisible is True
-    const profileTabElement = document.querySelector('.profile-tab') as HTMLElement;
+    const profileTabElement = document.querySelector(`.${styles.profileTab}`) as HTMLElement;
     if (!isProfileVisible) {
         profileTabElement.style.display = 'block';
     }
@@ -94,20 +84,20 @@ export function ClickableButton({ activeButton, onButtonClick }: { activeButton:
     /* This component renders clickable buttons for navigation */
     function Main() {
         return (
-            <div className='navBarButtonsStyle' style={navBarButtonsStyle}>
-                <button className={`nav-button ${activeButton === 'QUEST' ? 'active' : ''}`} onClick={() => { onButtonClick('QUEST')}}>
+            <div className={styles.navBarButtons}>
+                <button className={`${styles.navButton} ${activeButton === 'QUEST' ? styles.active : ''}`} onClick={() => { onButtonClick('QUEST')}}>
                     QUEST
                 </button>
-                <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
+                <button className={`${styles.navButton} ${activeButton === 'SUBGUILDS' ? styles.active : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
                     SUBGUILDS
                 </button>
-                <button className={`nav-button rhbutt ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}}>
+                <button className={`${styles.navButton} ${activeButton === 'RANKERS_HALL' ? styles.active : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}}>
                     RANKER'S HALL
                 </button>
-                <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
+                <button className={`${styles.navButton} ${activeButton === 'SCROLLS' ? styles.active : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
                     SCROLLS
                 </button>
-                <button className={`nav-button ${activeButton === 'CODEX' ? 'active' : ''}`} onClick={() => { onButtonClick('CODEX')}}>
+                <button className={`${styles.navButton} ${activeButton === 'CODEX' ? styles.active : ''}`} onClick={() => { onButtonClick('CODEX')}}>
                     CODEX
                 </button>
             </div>

@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// Styles
+import styles from './MainStyle.module.css';
+
 import { ClickableButton } from './NavBar';
 import NavBar from './NavBar';
 import ContentsContainer from './ContentsContainer';
@@ -20,14 +23,14 @@ const Dashboard = () => {
     function Main() {
         // Main return function for the dashboard, will contain the main structure of the dashboard and the components that will be rendered in it
         return (
-            <div style={dashboardContainerStyle}> {/* 100% height and width of the viewport */}
-                <div className='nav-top' style={navMenuTopStyle}> {/* 10% height and 100% width of dashboardContainerStyle*/}
+            <div className={styles.dashboardContainer}> {/* 100% height and width of the viewport */}
+                <div className={styles.navMenuTop}> {/* 10% height and 100% width of dashboardContainerStyle*/}
                     <NavBar activeButton={activeButton} onButtonClick={activeButtonHandler} handleLogout={handleLogout} />
                 </div>
-                <main style={dashboardMainStyle}> {/* 80% height and 100% width of dashboardContainerStyle */}
+                <main className={styles.dashboardMain}> {/* 80% height and 100% width of dashboardContainerStyle */}
                     <ContentsContainer activeButton={activeButton} />
                 </main>
-                <div className='nav-bottom' style={navMenuBottomStyle}> {/* 10% height and 100% width of dashboardContainerStyle */}
+                <div className={styles.navMenuBottom}> {/* 10% height and 100% width of dashboardContainerStyle */}
                     <ClickableButton activeButton={activeButton} onButtonClick={activeButtonHandler} />
                 </div>
             </div>
@@ -73,8 +76,8 @@ const Dashboard = () => {
 
     const navMenuTopStyle: React.CSSProperties = {
         // Size
-        width: '100%', // Full width of the dashboard
-        height: '10%', // 10% of the dashboard height
+        width: '10%', // Full width of the dashboard
+        height: '100%', // 10% of the dashboard height
 
         // Flex
         display: 'flex',
