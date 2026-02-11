@@ -115,8 +115,7 @@ function SignupForm({onSwitch}: {onSwitch: () => void}) {
 
         try {
             const response = await axios.post(
-                `${API_BASE_URL}/signup`, payload,
-                { withCredentials: true }
+                `${API_BASE_URL}/signup`, payload
             )
             if (response.status !== 200) {
                 throw new Error('Signup failed');
@@ -124,8 +123,9 @@ function SignupForm({onSwitch}: {onSwitch: () => void}) {
             else {
                 console.log('Signup successful:', response.data);
                 console.log('Get cookies after signup:', response.data['access_token']);
-                navigate("/dashboard");
-                console.log('Redirecting to dashboard...');
+                window.alert('Signup successful! Confirm in your email first before logging in.');
+                window.location.reload();
+                console.log('Redirecting to login...');
             }
 
         } catch (error) {

@@ -40,7 +40,7 @@ app.add_middleware(
 # app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
-# app.include_router(user.router, prefix="", tags=["User Management"])
+app.include_router(user.router, prefix="", tags=["User Management"])
 
 # Templates directory setup
 templates = Jinja2Templates(directory="app/templates")

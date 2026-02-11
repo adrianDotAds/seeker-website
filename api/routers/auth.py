@@ -140,32 +140,27 @@ async def logout(response: Response):
 async def test_auth():
     return {"message": "Test auth endpoint"}
 
-@router.post("/api/sign-up/check")
-async def sign_up(
-    fname: str = Form(...),
-    lname: str = Form(...),
-    email: str = Form(...),
-    password: str = Form(...),
-    seeker_id: str = Form(...)
-    ):
+@router.post("/api/signup")
+async def sign_up(payload: dict, response: Response, request: Request):
     '''
     Docstring for sign_up
     '''
     # Check if seeker ID exists in the database
-    exists = await verify_seeker_credentials(seeker_id, email)
+    print(f"Received sign-up request with payload: {payload}")
+    exists = await verify_seeker_credentials(payload['seeker_id'], payload['email'])
     print(f"Seeker ID exists: {exists}")
 
     if exists:
         # Create user in Supabase Auth
         supabase = await get_supabase_client("anon")
         response = supabase.auth.sign_up({
-            "email": email,
-            "password": password,
+            "email": payload['email'],
+            "password": payload['password'],
             "options": {
                 "data": {
-                    "first_name": fname,
-                    "last_name": lname,
-                    "seeker_id": seeker_id
+                    "first_name": payload['fname'],
+                    "last_name": payload['lname'],
+                    "seeker_id": payload['seeker_id']
                 }
             }
         })
