@@ -98,16 +98,53 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 }
 
 function SignupForm({onSwitch}: {onSwitch: () => void}) {
+    const navigate = useNavigate();
+
+    const [wrongCredentials, setWrongCredentials] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [seekerId, setSeekerId] = useState('');
+    console.log(email, password, firstName, lastName, seekerId);
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle signup logic here
+        const formData = new FormData(e.currentTarget);
+        const payload = Object.fromEntries(formData.entries());
+        console.log('Signup payload:', payload);
+
+        try {
+            const response = await axios.post(
+                `${API_BASE_URL}/signup`, payload,
+                { withCredentials: true }
+            )
+            if (response.status !== 200) {
+                throw new Error('Signup failed');
+            }
+            else {
+                console.log('Signup successful:', response.data);
+                console.log('Get cookies after signup:', response.data['access_token']);
+                navigate("/dashboard");
+                console.log('Redirecting to dashboard...');
+            }
+
+        } catch (error) {
+            console.error('Signup failed:', error);
+            setWrongCredentials(true);
+        }
+    };
+
     return (
-        <form className={styles.signupForm}>
+        <form className={styles.signupForm} onSubmit={handleSignUp}>
             <h2 className={styles.h2}>SEEKER REGISTRATION</h2>
             <div className="name-inputs">
-                <input type="text" name="fname" placeholder="FIRST NAME" className={styles.inputStyle} />
-                <input type="text" name="lname" placeholder="LAST NAME" className={styles.inputStyle} />
+                <input type="text" name="fname" placeholder="FIRST NAME" className={styles.inputStyle} onChange={(e) => setFirstName(e.target.value)}/>
+                <input type="text" name="lname" placeholder="LAST NAME" className={styles.inputStyle} onChange={(e) => setLastName(e.target.value)} />
             </div>
-            <input type="text" name="email" placeholder="EMAIL" className={styles.inputStyle} />
-            <input type="password" name="password" placeholder="PASSWORD" className={styles.inputStyle} />
-            <input type="text" name="seeker_id" placeholder="SEEKER ID" className={styles.inputStyle} />
+            <input type="text" name="email" placeholder="EMAIL" className={styles.inputStyle} onChange={(e) => setEmail(e.target.value)}/>
+            <input type="password" name="password" placeholder="PASSWORD" className={styles.inputStyle} onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" name="seeker_id" placeholder="SEEKER ID" className={styles.inputStyle} onChange={(e) => setSeekerId(e.target.value)} />
             <button className={styles.buttonSubmit} type="submit">Signup</button>
             <div className="form-ext-container">
                 <h3 className="form-ext">ALREADY A SEEKER?</h3>
