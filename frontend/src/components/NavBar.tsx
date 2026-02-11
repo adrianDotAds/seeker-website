@@ -1,96 +1,125 @@
 // React Imports
-
+import React, { useState } from 'react';
 // Logos, Icons etc can be imported here
 import logo from '../assets/logo.png';
 import user from '../assets/user2.png';
+import styles from './MainStyle.module.css';
 
-function NavBarButtonClick({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
+// Components
+import Profile from './Profile';
 
+function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: string, onButtonClick: (buttonName: string) => void, handleLogout: () => void }) {
+    /* This is the Main navigation bar component to navigate between different sections */
+    // Base height and width: 10% and 100% of the dashboard respectively
+    
+    // Variable Declarations
+    const [isProfileVisible, setProfileVisible] = useState(false);
+    
+    function Main() {
 
+        console.log(isProfileVisible)
+        // Change styles based on window size
+        if (window.innerWidth && window.innerWidth < 768) {
+            // Mobile view adjustments
+        }
+
+        return (
+            <div className={styles.navBarContainer}>
+                <div style={{height:'100%', width:'10%'}}>
+                    <img src={logo} alt="Logo" style={imageStyle}/>
+                </div>
+                <div className={styles.navBarButtons}>
+                    <div className={styles.hideOnMobile}>
+                        <ClickableButton activeButton={activeButton} onButtonClick={onButtonClick} />
+                    </div>
+                </div>
+                <div style={{height:'100%', width:'10%'}}>
+                    <img src={user} alt="User" style={imageStyle} onClick={() => profileToggle(isProfileVisible, setProfileVisible)}/>
+                    <div className={styles.profileTab}>
+                        <Profile handleLogout={() => {handleLogout()}}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    
+    const navBarContainerStyle: React.CSSProperties = {
+        // backgroundColor: '#065c22', //To Delete later
+        width: '100%',
+        height: '80%',
+        display: 'flex',
+        flexWrap: 'wrap' as 'wrap',
+        alignItems: 'center',
+        flexDirection: 'row' as 'row',
+        justifyContent: 'center',
+    };
+
+    const imageStyle: React.CSSProperties = {
+        // Size
+        width: '100%',
+        height: '100%',
+
+        // Content
+        objectFit: 'contain' as 'contain',
+    };
     return (
-        <>
-            <div className="nav-btn-group">
-                <button className={`nav-button ${activeButton === 'QUEST' ? 'active' : ''}`} onClick={() => { onButtonClick('QUEST')}}>
+        Main()
+    );
+}
+
+function profileToggle(isProfileVisible: boolean, setProfileVisible: React.Dispatch<React.SetStateAction<boolean>>) {
+    setProfileVisible(!isProfileVisible);
+    // Display profile tab if isProfileVisible is True
+    const profileTabElement = document.querySelector(`.${styles.profileTab}`) as HTMLElement;
+    if (!isProfileVisible) {
+        profileTabElement.style.display = 'block';
+    }
+    else {
+        profileTabElement.style.display = 'none';
+    }
+}
+
+export function ClickableButton({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
+    /* This component renders clickable buttons for navigation */
+    function Main() {
+        return (
+            <div className={styles.navBarButtons}>
+                <button className={`${styles.navButton} ${activeButton === 'QUEST' ? styles.active : ''}`} onClick={() => { onButtonClick('QUEST')}}>
                     QUEST
                 </button>
-                <button className={`nav-button ${activeButton === 'SUBGUILDS' ? 'active' : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
+                <button className={`${styles.navButton} ${activeButton === 'SUBGUILDS' ? styles.active : ''}`} onClick={() => { onButtonClick('SUBGUILDS')}}>
                     SUBGUILDS
                 </button>
-                <button className={`nav-button ${activeButton === 'RANKERS_HALL' ? 'active' : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}} style={{ fontSize: 'clamp(10px, 2vw, 16px)' }}>
+                <button className={`${styles.navButton} ${activeButton === 'RANKERS_HALL' ? styles.active : ''}`} onClick={() => { onButtonClick('RANKERS_HALL')}}>
                     RANKER'S HALL
                 </button>
-                <button className={`nav-button ${activeButton === 'SCROLLS' ? 'active' : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
+                <button className={`${styles.navButton} ${activeButton === 'SCROLLS' ? styles.active : ''}`} onClick={() => { onButtonClick('SCROLLS')}}>
                     SCROLLS
                 </button>
-                <button className={`nav-button ${activeButton === 'CODEX' ? 'active' : ''}`} onClick={() => { onButtonClick('CODEX')}}>
+                <button className={`${styles.navButton} ${activeButton === 'CODEX' ? styles.active : ''}`} onClick={() => { onButtonClick('CODEX')}}>
                     CODEX
                 </button>
             </div>
-        </>
-    );
-}
-
-function LogoAndProfileOnly() {
+        );
+    }
+    // Styles
+    const navBarButtonsStyle: React.CSSProperties = {
+        // Size
+        height: '100%',
+        // Flex
+        display: 'flex',
+        flexDirection: 'row' as 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        gap: '1%',
+        // Colors
+        // backgroundColor: '#065c22', //To Delete later  
+    };
     return (
-        <>
-            <div className='logo-and-profile-only'>
-                <a>
-                    <img src={logo} alt="Seeker 2.Q Logo" 
-                    className="nav-logo" 
-                    style={{
-                        width: 'clamp(40px, 5vw, 60px)',
-                        height: 'auto',
-                        // width: '70px'
-                    }}/>
-                </a>
-
-                <a>
-                    <img src={user} alt="User Icon"
-                    className="nav-user-icon" 
-                    style={{
-                        width: 'clamp(40px, 5vw, 60px)',
-                        height: 'auto',
-                    }}/>
-                </a>
-
-            </div>
-                
-        </>
-    );
-}
-
-function NavBar({ activeButton, onButtonClick }: { activeButton: string, onButtonClick: (buttonName: string) => void }) {
-    return (
-        <>
-            <div className="nav-bar">
-                <a>
-                    <img src={logo} alt="Seeker 2.Q Logo" 
-                    className="nav-logo" 
-                    style={{
-                        width: 'clamp(40px, 5vw, 60px)',
-                        height: 'auto',
-                        // width: '70px'
-                    }}/>
-                </a>
-                
-                <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <div className='nav-menu-top'>
-                        <NavBarButtonClick activeButton={activeButton} onButtonClick={onButtonClick} />
-                    </div>
-                </div>
-                    
-                <a>
-                    <img src={user} alt="User Icon"
-                    className="nav-user-icon" 
-                    style={{
-                        width: 'clamp(40px, 5vw, 60px)',
-                        height: 'auto',
-                    }}/>
-                </a>
-            </div>
-        </>
+        Main()
     );
 }
 
 export default NavBar;
-export { NavBarButtonClick, LogoAndProfileOnly };

@@ -1,0 +1,139 @@
+/* Wrapper */
+.loginSignupWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.loginSignupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60dvh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border: 1.5em solid #004AAD;
+    border-radius: 1em;
+}
+
+/* Form Related Styles */
+h2 {
+    font-family: var(--primary-font);
+    font-weight: 650;
+    margin: 0.5em 0 1em 0;
+    padding: 0;
+    font-size: 2dvw;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+    height: inherit;
+}
+
+.inputStyle {
+    width: 80%;
+    padding: 1em;
+    padding-left: 1em;
+    border-radius: 0.3em;
+    border: none;
+    background-color: #EFF2F8;
+    color: black;
+    border-radius: 1em;
+}
+
+input::placeholder {
+    font-size: inherit;
+    font-weight: bold;
+    line-height: 100em;
+    color: #A9A9A9;
+    padding-left: 8%;
+}
+
+.formExtContainer {
+    font-family: var(--placeholder-font);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8em;
+    
+}
+
+.formExt {
+    color: black;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+a.formExt {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.signUp {
+    font-family: var(--primary-font);
+    font-weight: 650;
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.buttonSubmit {
+    font-family: var(--primary-font);
+    background-image: radial-gradient(#02265B, #030611);
+    color: white;
+    border: none;
+    padding: 0.75em;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    width: 85%;
+}
+
+/* Phone */
+/* @media screen and (max-width: 650px) {
+    .loginSignupContainer {
+        width: 90dvw;
+        border: 1em solid #004AAD;
+    }
+    h2 {
+        font-size: 1dvw;
+    }
+} */
+@media screen and (max-width: 768px) {
+    .loginSignupContainer {
+        width: 70dvw;
+        border: 1em solid #004AAD;
+        transition: all 0.3s ease;
+    }
+    h2 {
+        font-size: 5dvw;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 769px) and (max-width: 936px) {
+    .loginSignupContainer {
+        width: 50dvw;
+        transition: all 0.3s ease;
+    }
+    h2 {
+        font-size: 2dvw;
+    }
+    
+}
+
+/* @media screen and (min-width> 936px) {
+    .loginSignupContainer {
+        width: 80dvw;
+    }
+} */

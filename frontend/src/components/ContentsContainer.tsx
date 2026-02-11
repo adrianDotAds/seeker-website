@@ -1,50 +1,42 @@
 import { useState } from "react";
 
-// Styles for QUEST Component
-const questStyle = {
-    fontSize: 'unset',
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    alignItems: 'center',
-    width: '100%',
-};
-
-const questNavBar = {
-    fontSize: 'unset',
-    display: 'flex',
-    flexDirection: 'row' as 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-    gap: '4px',
-    width: '100%',
-};
-
-const questNavBtn = {
-    fontSize: 'unset',
-    backgroundImage: 'none',
-    backgroundColor: '#737373',
-    gap: '2%',
-    color: 'white',
-    borderRadius: '12px 12px 0px 0px',
-    width: '100%',
-};
+import styles from './MainStyle.module.css';
 
 const questNavBtnActive = {
-    fontSize: 'unset',
-    width: '100%',
+    fontSize: '1.2vw',
+    width: '90%',
+    height: '80%',
     backgroundImage: 'none',
     borderTop: '3px solid #B89E68',
     borderRadius: '12px 12px 0px 0px',
-    backgroundColor: 'white',
+    backgroundColor: 'green',
     color: '#004AAD',
 }
 
 const questNavContents = {
-    fontSize: 'unset',
+    fontSize: 'clamp(7px, 2vw, 15px)',
     backgroundColor: 'white',
     color: 'black',
     padding: '20px',
+};
+
+// QuestButton Contents Styles
+const questButtonContentsStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    color: 'black',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column' as 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
+
+const QUESTContentStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    color: 'black',
+    width: '100%',
+    height: '90%',
 };
 
 // Main Contents Container Component - Ito yung irerender sa dashboard depende sa active button [Quest, Subguilds, Rankers Hall, Scrolls, Codex]
@@ -52,14 +44,14 @@ function ContentsContainer({ activeButton }: { activeButton: string }) {
     return (
         <>
             {/* Contents Container - Ipapakita sa contents under navbar */}
-            <div className="contents-container" style={{ display: activeButton === 'LOGO' ? 'none' : 'block', fontFamily: 'Cinzel, serif' }}>
+            <div className={styles.contentsContainer} style={{ display: activeButton === 'LOGO' ? 'none' : 'flex', fontFamily: 'Cinzel, serif', color: '#004AAD' }}>
                 {activeButton === 'QUEST' && <QUESTContent />}
                 {activeButton === 'SUBGUILDS' && <SUBGUILDSContent />}
                 {activeButton === 'RANKERS_HALL' && <RANKERS_HALLContent />}
                 {activeButton === 'SCROLLS' && <SCROLLSContent />}
                 {activeButton === 'CODEX' && <CODEXContent />}
             </div>
-            <div className="home-container" style={{display: activeButton === 'LOGO' ? 'block' : 'none'}}>
+            <div className={styles.homeContainer} style={{display: activeButton === 'LOGO' ? 'block' : 'none'}}>
                 {activeButton === 'LOGO' && <div>Our Journey</div>}
             </div>
         </>
@@ -114,15 +106,27 @@ function QUESTContent() {
 
     return (
         // QUEST Container with Navigation Bar
-        <div className="quest-container" style={questStyle}>
-            <div style={questNavBar}>
-                <button style={activeQuestTab === 'EVENTS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('EVENTS')}>QEvents</button>
-                <button style={activeQuestTab === 'HACKATONS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('HACKATONS')}>HACKATONS</button>
-                <button style={activeQuestTab === 'WORKSHOPS' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('WORKSHOPS')}>WORKSHOPS</button>
-                <button style={activeQuestTab === 'RECREATIONAL' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>RECREATIONAL</button>
-                <button style={activeQuestTab === 'ONLINE_LEARNING' ? questNavBtnActive : questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>ONLINE_LEARNING</button>
+        <div className={styles.questContainer}>
+            <div className={styles.questNavBar}>
+                <button className={activeQuestTab === 'EVENTS' ? styles.questNavBtnActive : styles.questNavBtn} onClick={() => setActiveQuestTab('EVENTS')}>
+                    EVENTS
+                </button>
+                <button className={activeQuestTab === 'HACKATONS' ? styles.questNavBtnActive : styles.questNavBtn} onClick={() => setActiveQuestTab('HACKATONS')}>
+                    HACKATONS
+                </button>
+                <button className={activeQuestTab === 'WORKSHOPS' ? styles.questNavBtnActive : styles.questNavBtn} onClick={() => setActiveQuestTab('WORKSHOPS')}>
+                    WORKSHOPS
+                </button>
+                <button className={activeQuestTab === 'RECREATIONAL' ? styles.questNavBtnActive : styles.questNavBtn} onClick={() => setActiveQuestTab('RECREATIONAL')}>
+                    RECREATIONAL
+                </button>
+                <button className={activeQuestTab === 'ONLINE_LEARNING' ? styles.questNavBtnActive : styles.questNavBtn} onClick={() => setActiveQuestTab('ONLINE_LEARNING')}>
+                    ONLINE LEARNING
+                </button>
             </div>
-            <div style={{width: '100%', fontSize: 'unset'}}>
+
+            {/* QUEST Contents based on active tab */}
+            <div className="quest-content" style={QUESTContentStyle}>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}
