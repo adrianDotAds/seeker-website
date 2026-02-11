@@ -83,20 +83,6 @@ export function ClickableButton({ activeButton, onButtonClick }: { activeButton:
             </div>
         );
     }
-    // Styles
-    const navBarButtonsStyle: React.CSSProperties = {
-        // Size
-        height: '100%',
-        // Flex
-        display: 'flex',
-        flexDirection: 'row' as 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        gap: '1%',
-        // Colors
-        // backgroundColor: '#065c22', //To Delete later  
-    };
     return (
         Main()
     );
