@@ -169,18 +169,17 @@ async def sign_up(
                 }
             }
         })
+        print(f"Sign-up response: {response}")
+        return JSONResponse(content={"message": "Sign-up successful, please check your email to confirm your account."})
 
-        if response.user:
-            print(f"User {email} signed up successfully.")
-            return RedirectResponse(url="/", status_code=303)
-        else:
-            print(f"Sign-up failed for {email}.")
-            return HTMLResponse(content='''Sign-up failed''', status_code=400)
+        # if response.user:
+        #     print(f"User {email} signed up successfully.")
+        #     return RedirectResponse(url="/", status_code=303)
+        # else:
+        #     print(f"Sign-up failed for {email}.")
+        #     return HTMLResponse(content='''Sign-up failed''', status_code=400)
     else:
         print("Seeker ID verification failed during sign-up.")
-        return HTMLResponse(content='''
-                            <h1>Sign-up failed. Contact Your Guild for Seeker ID Connected in Your Email</h1>
-                            \n<a href="/">Go Back to Home</a>
-                            ''', status_code=400)
+        return JSONResponse(content={"message": "Sign-up failed. Contact Your Guild for Seeker ID Connected in Your Email"}, status_code=400)
     
     
