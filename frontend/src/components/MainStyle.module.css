@@ -1,5 +1,11 @@
 main{
 }
+
+.imageStyle {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 .dashboardMain {
     /* Size and position */
     width: 100%;
@@ -187,6 +193,14 @@ main{
     background-color: white;
     color: #004AAD;
 }
+
+.questNavContents {
+    font-size: clamp(7px, 2vw, 15px);
+    background-color: white;
+    color: black;
+    padding: 20px;
+}
+
 
 @media screen and (max-width: 768px) {
     .dashboardMain {

@@ -26,7 +26,7 @@ function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: s
         return (
             <div className={styles.navBarContainer}>
                 <div style={{height:'100%', width:'10%'}}>
-                    <img src={logo} alt="Logo" style={imageStyle}/>
+                    <img src={logo} alt="Logo" className={styles.imageStyle}/>
                 </div>
                 <div className={styles.navBarButtons}>
                     <div className={styles.hideOnMobile}>
@@ -34,7 +34,7 @@ function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: s
                     </div>
                 </div>
                 <div style={{height:'100%', width:'10%'}}>
-                    <img src={user} alt="User" style={imageStyle} onClick={() => profileToggle(isProfileVisible, setProfileVisible)}/>
+                    <img src={user} alt="User" className={styles.imageStyle} onClick={() => profileToggle(isProfileVisible, setProfileVisible)}/>
                     <div className={styles.profileTab}>
                         <Profile handleLogout={() => {handleLogout()}}/>
                     </div>
@@ -43,26 +43,6 @@ function NavBar({ activeButton, onButtonClick, handleLogout }: { activeButton: s
         );
     }
 
-    
-    const navBarContainerStyle: React.CSSProperties = {
-        // backgroundColor: '#065c22', //To Delete later
-        width: '100%',
-        height: '80%',
-        display: 'flex',
-        flexWrap: 'wrap' as 'wrap',
-        alignItems: 'center',
-        flexDirection: 'row' as 'row',
-        justifyContent: 'center',
-    };
-
-    const imageStyle: React.CSSProperties = {
-        // Size
-        width: '100%',
-        height: '100%',
-
-        // Content
-        objectFit: 'contain' as 'contain',
-    };
     return (
         Main()
     );
@@ -103,20 +83,6 @@ export function ClickableButton({ activeButton, onButtonClick }: { activeButton:
             </div>
         );
     }
-    // Styles
-    const navBarButtonsStyle: React.CSSProperties = {
-        // Size
-        height: '100%',
-        // Flex
-        display: 'flex',
-        flexDirection: 'row' as 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        gap: '1%',
-        // Colors
-        // backgroundColor: '#065c22', //To Delete later  
-    };
     return (
         Main()
     );
