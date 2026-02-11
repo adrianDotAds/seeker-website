@@ -98,7 +98,6 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 }
 
 function SignupForm({onSwitch}: {onSwitch: () => void}) {
-    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
