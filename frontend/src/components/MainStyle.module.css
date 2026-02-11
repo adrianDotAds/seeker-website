@@ -1,5 +1,11 @@
 main{
 }
+
+.imageStyle {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 .dashboardMain {
     /* Size and position */
     width: 100%;

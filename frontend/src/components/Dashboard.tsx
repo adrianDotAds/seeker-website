@@ -8,7 +8,6 @@ import styles from './MainStyle.module.css';
 import { ClickableButton } from './NavBar';
 import NavBar from './NavBar';
 import ContentsContainer from './ContentsContainer';
-import { useWindowSize } from './GetDimension';
 // import { NavBarButtonClick, LogoAndProfileOnly } from './NavBar';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
@@ -18,7 +17,6 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [activeButton, setActiveButton] = useState('LOGO');
     const navigate = useNavigate();
-    const windowSize = useWindowSize();
 
     function Main() {
         // Main return function for the dashboard, will contain the main structure of the dashboard and the components that will be rendered in it
