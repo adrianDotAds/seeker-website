@@ -188,6 +188,14 @@ main{
     color: #004AAD;
 }
 
+.questNavContents {
+    font-size: clamp(7px, 2vw, 15px);
+    background-color: white;
+    color: black;
+    padding: 20px;
+}
+
+
 @media screen and (max-width: 768px) {
     .dashboardMain {
         height: 83%; /* Adjust height for mobile to insert navbuttons under*/

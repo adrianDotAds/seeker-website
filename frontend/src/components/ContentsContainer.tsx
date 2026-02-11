@@ -2,43 +2,6 @@ import { useState } from "react";
 
 import styles from './MainStyle.module.css';
 
-const questNavBtnActive = {
-    fontSize: '1.2vw',
-    width: '90%',
-    height: '80%',
-    backgroundImage: 'none',
-    borderTop: '3px solid #B89E68',
-    borderRadius: '12px 12px 0px 0px',
-    backgroundColor: 'green',
-    color: '#004AAD',
-}
-
-const questNavContents = {
-    fontSize: 'clamp(7px, 2vw, 15px)',
-    backgroundColor: 'white',
-    color: 'black',
-    padding: '20px',
-};
-
-// QuestButton Contents Styles
-const questButtonContentsStyle: React.CSSProperties = {
-    backgroundColor: 'white',
-    color: 'black',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-}
-
-const QUESTContentStyle: React.CSSProperties = {
-    backgroundColor: 'white',
-    color: 'black',
-    width: '100%',
-    height: '90%',
-};
-
 // Main Contents Container Component - Ito yung irerender sa dashboard depende sa active button [Quest, Subguilds, Rankers Hall, Scrolls, Codex]
 function ContentsContainer({ activeButton }: { activeButton: string }) {
     return (
@@ -66,7 +29,7 @@ function QUESTContent() {
     
     function EventTab() {
         return (
-            <div style={questNavContents}>
+            <div className={styles.questNavContents}>
                 EVENT TAB CONTENT
             </div>
         );
@@ -74,7 +37,7 @@ function QUESTContent() {
 
     function HackatonTab() {
         return (
-            <div style={questNavContents}>
+            <div className={styles.questNavContents}>
                 HACKATON TAB CONTENT
             </div>
         );
@@ -82,7 +45,7 @@ function QUESTContent() {
 
     function WorkShopTab() {
         return (
-            <div style={questNavContents}>
+            <div className={styles.questNavContents}>
                 WORKSHOP TAB CONTENT
             </div>
         );
@@ -90,7 +53,7 @@ function QUESTContent() {
 
     function RecreationalTab() {
         return (
-            <div style={questNavContents}>
+            <div className={styles.questNavContents}>
                 RECREATIONAL TAB CONTENT
             </div>
         );
@@ -98,7 +61,7 @@ function QUESTContent() {
 
     function OnlineLearningTab() {
         return (
-            <div style={questNavContents}>
+            <div className={styles.questNavContents}>
                 ONLINE LEARNING TAB CONTENT
             </div>
         );
@@ -126,7 +89,7 @@ function QUESTContent() {
             </div>
 
             {/* QUEST Contents based on active tab */}
-            <div className="quest-content" style={QUESTContentStyle}>
+            <div className={styles.questContent}>
             {activeQuestTab === 'EVENTS' && <EventTab />}
             {activeQuestTab === 'HACKATONS' && <HackatonTab />}
             {activeQuestTab === 'WORKSHOPS' && <WorkShopTab />}
