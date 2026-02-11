@@ -100,7 +100,6 @@ function LoginForm({onSwitch}: {onSwitch: () => void}) {
 function SignupForm({onSwitch}: {onSwitch: () => void}) {
     const navigate = useNavigate();
 
-    const [wrongCredentials, setWrongCredentials] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -131,7 +130,6 @@ function SignupForm({onSwitch}: {onSwitch: () => void}) {
 
         } catch (error) {
             console.error('Signup failed:', error);
-            setWrongCredentials(true);
         }
     };
 
