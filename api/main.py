@@ -41,6 +41,7 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
 app.include_router(user.router, prefix="", tags=["User Management"])
+app.include_router(getEvents.router, prefix="", tags=["Event Management"])
 
 # Templates directory setup
 templates = Jinja2Templates(directory="app/templates")
