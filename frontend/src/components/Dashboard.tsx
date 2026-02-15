@@ -10,8 +10,10 @@ import NavBar from './NavBar';
 import ContentsContainer from './ContentsContainer';
 // import { NavBarButtonClick, LogoAndProfileOnly } from './NavBar';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${import.meta.env.LOCALIP}:8085/api`;
+console.log("API Base URL:", API_BASE_URL);
+console.log("Local IP from env:", import.meta.env.VITE_LOCALIP);
+console.log("Environment Variables:", import.meta.env.LOCALIP, import.meta.env.VITE_API_URL);
 const Dashboard = () => {
     // Vars for Clickable Button inside Nav
     const [loading, setLoading] = useState(true);
