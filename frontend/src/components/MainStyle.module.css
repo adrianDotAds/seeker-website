@@ -207,23 +207,18 @@ main{
     height: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
+    flex-wrap: wrap;
     overflow-y: auto;
-    align-content: center;
 }
 
 .eventCard {
     width: 30%;
     height: 35%;
-    border: 2px solid #004AAD;
     border-radius: 1em;
     padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #EFF2F8;
 }
 
 .eventImage {
@@ -239,14 +234,17 @@ main{
     height: 15%;
     width: 100%;
     justify-content: space-between;
-    background-color: red;
+    align-items: center;
 }
 
 .description {
     display: flex;
     height: 10%;
     width: 100%;
-    background-color: blue;
+}
+p.description{
+    margin: 0;
+    font-size: 1dvw;
 }
 
 .imageEventNameDateContainer {
@@ -268,7 +266,7 @@ main{
     align-items: center;
 }
 .eventDate {
-    font-size: 1.5dvw;
+    font-size: 1dvw;
     text-align: right;
     display: flex;
     flex-direction: row;
