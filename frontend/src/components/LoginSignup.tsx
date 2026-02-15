@@ -8,7 +8,7 @@ import styles from './LoginSignup.module.css';
 // URLS
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://10.10.20.198:8085/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://192.168.254.101:8085/api';
 
 function LoginSignupContainer() {
     // Initial viewport width
