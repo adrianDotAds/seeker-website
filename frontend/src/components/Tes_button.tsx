@@ -1,19 +1,8 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { data, useNavigate } from 'react-router-dom';
 
 import styles from './MainStyle.module.css';
-
-
-function Tes_button() {
-    const navigate = useNavigate();
-    return (
-        <div className={styles.buttonContainer}>
-            <button onClick={() => navigate("/test-button")}>Login</button>
-        </div>
-    );
-}
 
 function Tes_button2() {
     // 1. Initialize state as an empty array to avoid .map errors on first render
