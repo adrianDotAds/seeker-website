@@ -4,7 +4,7 @@ main{
 .imageStyle {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 .dashboardMain {
     /* Size and position */
@@ -201,6 +201,79 @@ main{
     padding: 20px;
 }
 
+/* Events Tab */
+.eventContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.eventCard {
+    width: 30%;
+    height: 35%;
+    border-radius: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eventImage {
+    width: 100%;
+    height: 85%;
+    object-fit:fill;
+}
+
+.titleAndDate {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.5em;
+    height: 15%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description {
+    display: flex;
+    height: 10%;
+    width: 100%;
+}
+p.description{
+    margin: 0;
+    font-size: 1dvw;
+}
+
+.imageEventNameDateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    height: 90%;
+    width: 100%;
+    justify-content: center;
+}
+
+.eventName {
+    font-size: 1.5dvw;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.eventDate {
+    font-size: 1dvw;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
 @media screen and (max-width: 768px) {
     .dashboardMain {
