@@ -14,18 +14,16 @@ from api.db import supabase
 # Import routers
 from api.routers import *
 
+# Import configuration settings
+from api.config import IPWhitelist
+
 app = FastAPI()
+
+ip_storage = IPWhitelist().allowed_ips
 
 # CORS configuration
 origins = (
-    "http://localhost",
-    "http://localhost:8086",
-    "http://localhost:5173",
-    "http://10.10.20.198:8086",
-    "http://192.168.254.101:8086",
-    "http://127.0.0.1:8086",
-    "https://seeker-site.vercel.app/",
-    "https://seeker-website-development.vercel.app/"
+    ip.strip() for ip in ip_storage if ip.strip()  # Ensure we only include non-empty IPs  
 )
 
 app.add_middleware(
@@ -47,9 +45,8 @@ app.include_router(getEvents.router, prefix="", tags=["Event Management"])
 templates = Jinja2Templates(directory="app/templates")
 
 @app.post("/test-main")
-async def test_main(data: dict = {}):
-    print("Main endpoint accessed with data:", data)
-    return {"message": "Main endpoint is working!  ", "data": data}
+async def test_main():
+    print("Main endpoint accessed with data:", origins)
 
 @app.get("/", tags=["Root"])
 async def root():

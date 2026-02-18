@@ -11,3 +11,6 @@ class Settings(BaseModel):
     SUPABASE_KEY_ADMIN: str = os.getenv("SUPABASE_KEY_ADMIN")
     SUPABASE_JWT_SECRET: str = os.getenv("SUPABASE_JWT_SECRET")
     ALGORITHM: str = "HS256"
+
+class IPWhitelist(BaseModel):
+    allowed_ips: list[str] = os.getenv("ALLOWED_IPS", "").split(",")  # Comma-separated list of allowed IPs
