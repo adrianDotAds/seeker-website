@@ -14,21 +14,26 @@ from api.db import supabase
 # Import routers
 from api.routers import *
 
-# Import configuration settings
-from api.config import IPWhitelist
+from api.config import settings
 
 app = FastAPI()
 
-ip_storage = IPWhitelist().allowed_ips
+ip_storage = settings.ALLOWED_HOSTS
 
+if isinstance(ip_storage, str):
+    ip_storage = [ip.strip() for ip in ip_storage.split(",") if ip.strip()]  # Split and clean the string into a list
+else:
+    ip_storage = []  # Default to an empty list if the environment variable is not set or is not a string
 # CORS configuration
-origins = (
+origins = [
     ip.strip() for ip in ip_storage if ip.strip()  # Ensure we only include non-empty IPs  
-)
+]
+
+print(f"Configured CORS origins: {origins}")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=list(origins),
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,13 +44,14 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="", tags=["Authentication"])
 app.include_router(user.router, prefix="", tags=["User Management"])
-app.include_router(getEvents.router, prefix="", tags=["Event Management"])
+app.include_router(eventsTab.router, prefix="", tags=["Event Management"])
 
 # Templates directory setup
 templates = Jinja2Templates(directory="app/templates")
 
 @app.post("/test-main")
 async def test_main():
+    print("Test endpoint accessed with data:", settings.ALLOWED_HOSTS)
     print("Main endpoint accessed with data:", origins)
 
 @app.get("/", tags=["Root"])

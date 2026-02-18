@@ -30,7 +30,7 @@ function QUESTContent() {
     
     function EventTab() {
         // 1. Initialize state as an empty array to avoid .map errors on first render
-        const [events, setEvents] = useState<any[]>([]);
+        const [events, setEvents] = useState<{name: string, url: string}[]>([]);
 
         useEffect(() => {
         const fetchEvents = async () => {
