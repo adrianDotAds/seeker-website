@@ -37,10 +37,11 @@ function QUESTContent() {
             try {
                 const response = await axios.get('/api/getevents');
                 const fetchedData = response.data.events;
+                console.log("Fetched events data:", fetchedData);
                 
                 // 2. Transform the object into an array if needed
                 const eventList = Object.keys(fetchedData).map(key => ({
-                    name: key,
+                    name: fetchedData[key].name,
                     url: fetchedData[key].public_url
                 }));
 
