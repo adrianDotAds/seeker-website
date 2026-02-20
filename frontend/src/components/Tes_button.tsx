@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 import styles from './MainStyle.module.css';
+import { FcAddImage } from "react-icons/fc";
 
 function Tes_button2() {
     // 1. Initialize state as an empty array to avoid .map errors on first render
@@ -93,6 +94,7 @@ function addEvents() {
                 type="file"
                 onChange={(e) => setImage(e.target.files?.[0] || null)}
             />
+            <FcAddImage />test
             <button type="submit">Add Events</button>
         </form>
     );

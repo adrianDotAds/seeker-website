@@ -30,7 +30,7 @@ function QUESTContent() {
     
     function EventTab() {
         // 1. Initialize state as an empty array to avoid .map errors on first render
-        const [events, setEvents] = useState<{name: string, url: string}[]>([]);
+        const [events, setEvents] = useState<{name: string, url: string, description: string, date: string}[]>([]);
 
         useEffect(() => {
         const fetchEvents = async () => {
@@ -41,8 +41,10 @@ function QUESTContent() {
                 
                 // 2. Transform the object into an array if needed
                 const eventList = Object.keys(fetchedData).map(key => ({
-                    name: fetchedData[key].name,
-                    url: fetchedData[key].public_url
+                    name: fetchedData[key].title,
+                    url: fetchedData[key].imageURL,
+                    description: fetchedData[key].description,
+                    date: fetchedData[key].date
                 }));
 
                 // 3. Update state once with the full list
@@ -63,10 +65,10 @@ function QUESTContent() {
                             <img className={styles.eventImage} src={event.url} alt={event.name} />
                             <div className={styles.titleAndDate}>
                                 <h3 className={styles.eventName}>{event.name}</h3>
-                                <p className={styles.eventDate}>date</p>
+                                <p className={styles.eventDate}>{event.date}</p>
                             </div>
                         </div>
-                        <p className={styles.description}>description</p>
+                        <p className={styles.description}>{event.description}</p>
                     </div>
                 ))}
             </div>
