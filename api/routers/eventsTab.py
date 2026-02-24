@@ -17,6 +17,9 @@ from datetime import datetime
 
 router = APIRouter()
 
+@router.get("/ping")
+def ping():
+    return "pong"
 @router.get("/api/getevents")
 async def get_events():
     supabase = await get_supabase_client("admin") # type: ignore

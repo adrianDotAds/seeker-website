@@ -3,6 +3,12 @@ import axios from "axios";
 
 import styles from './MainStyle.module.css';
 
+// Components
+import AddEvents from "./eventsTab/addEvent";
+
+// svg imports
+import { FcAddImage } from "react-icons/fc";
+
 // Main Contents Container Component - Ito yung irerender sa dashboard depende sa active button [Quest, Subguilds, Rankers Hall, Scrolls, Codex]
 function ContentsContainer({ activeButton }: { activeButton: string }) {
     return (
@@ -27,10 +33,25 @@ function ContentsContainer({ activeButton }: { activeButton: string }) {
 function QUESTContent() {
     // State to manage active tab [Events, Hackatons, Workshops, Recreational, Online Learning]
     const [activeQuestTab, setActiveQuestTab] = useState('EVENTS');
-    
+
     function EventTab() {
         // 1. Initialize state as an empty array to avoid .map errors on first render
         const [events, setEvents] = useState<{name: string, url: string, description: string, date: string}[]>([]);
+        const [showEventForm, setEventForm] = useState(true)
+
+        const showAddEvent = async () => {
+            // Hide or Unhides Event Form
+            setEventForm(!showEventForm)
+            console.log(showEventForm)
+
+            if (showEventForm) {
+                // Show Event Form
+                document.getElementsByClassName(styles.addEventFormContainer)[0].setAttribute("style", "display: flex; background-color: rgba(0, 0, 0, 0.76); position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center;");
+            } else {
+                // Hide Event Form
+                document.getElementsByClassName(styles.addEventFormContainer)[0].setAttribute("style", "display: none; background-color: rgba(192, 30, 30, 0.76); position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center;");
+            }
+        }
 
         useEffect(() => {
         const fetchEvents = async () => {
@@ -56,22 +77,30 @@ function QUESTContent() {
 
         fetchEvents();
     }, []); // Empty dependency array ensures this runs only once on mount
+
         return (
-            <div className={styles.eventContainer}>
-                {/* 4. Map through the events state array */}
-                {events.map((event) => (
-                    <div key={event.name} className={styles.eventCard}>
-                        <div className={styles.imageEventNameDateContainer}>
-                            <img className={styles.eventImage} src={event.url} alt={event.name} />
-                            <div className={styles.titleAndDate}>
-                                <h3 className={styles.eventName}>{event.name}</h3>
-                                <p className={styles.eventDate}>{event.date}</p>
+            <>
+                <div className={styles.eventContainer}>
+                    {/* 4. Map through the events state array */}
+                    {events.map((event) => (
+                        <div key={event.name} className={styles.eventCard}>
+                            <div className={styles.imageEventNameDateContainer}>
+                                <img className={styles.eventImage} src={event.url} alt={event.name} />
+                                <div className={styles.titleAndDate}>
+                                    <h3 className={styles.eventName}>{event.name}</h3>
+                                    <p className={styles.eventDate}>{event.date}</p>
+                                </div>
                             </div>
+                            <p className={styles.description}>{event.description}</p>
                         </div>
-                        <p className={styles.description}>{event.description}</p>
+                    ))}
+                    <FcAddImage className={styles.addEvent} onClick={showAddEvent}/>
+                    <div className={styles.addEventFormContainer}>
+                        {showEventForm && <AddEvents />}
                     </div>
-                ))}
-            </div>
+                </div>
+            </>
+                
         );
     }
 
