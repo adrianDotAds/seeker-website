@@ -176,7 +176,7 @@ main{
     width: 80%;
     font-size: 1vw;
     background-image: none;
-    background-color: #737373;
+    background-color: #6b5f5f;
     gap: 2%;
     color: white;
     border-radius: 12px 12px 0px 0px;
@@ -188,7 +188,7 @@ main{
     height: 80%;
     background-image: none;
     border: none;
-    border-top: 3px solid #B89E68;
+    /* border-top: 3px solid #B89E68; */
     border-radius: 12px 12px 0px 0px;
     background-color: white;
     color: #004AAD;
@@ -213,6 +213,7 @@ main{
     justify-content: center;
     column-gap: 1%;
     align-content: flex-start;
+    row-gap: 1em;
 }
 
 .eventCard {
@@ -293,7 +294,7 @@ p.description{
 
 .addEventFormContainer {
     position: fixed;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -307,6 +308,12 @@ p.description{
     position: fixed;
     display: flex;
     flex-direction: column;
+}
+
+.previewImage {
+    width: 40%;
+    height: auto;
+    margin-bottom: 1em;
 }
 
 @media screen and (max-width: 768px) {
@@ -335,6 +342,16 @@ p.description{
     .questContainer {
     }
     .questNavBar {
+    }
+    .questNavBtn {
+        height: 4dvh;
+        font-size: 2dvw;
+        border-radius: 7px 7px 0px 0px;
+    }
+    .questNavBtnActive {
+        height: 4dvh;
+        font-size: 2dvw;
+        border-radius: 7px 7px 0px 0px;
     }
 
     /* Events */

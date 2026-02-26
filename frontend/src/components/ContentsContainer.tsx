@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from './MainStyle.module.css';
 
 // Components
-import AddEvents from "./eventsTab/addEvent";
+import AddEvents from "./eventsTab/AddEvent";
 
 // svg imports
 import { FcAddImage } from "react-icons/fc";
@@ -42,14 +42,18 @@ function QUESTContent() {
         const showAddEvent = async () => {
             // Hide or Unhides Event Form
             setEventForm(!showEventForm)
-            console.log(showEventForm)
+            console.log("showEventForm:", showEventForm);
 
             if (showEventForm) {
                 // Show Event Form
                 document.getElementsByClassName(styles.addEventFormContainer)[0].setAttribute("style", "display: flex; background-color: rgba(0, 0, 0, 0.76); position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center;");
+                // document.getElementsByClassName(styles.addEventForm)[0]?.setAttribute("style", "display: none;");
+                console.log("showEventForm if:", showEventForm);
             } else {
                 // Hide Event Form
                 document.getElementsByClassName(styles.addEventFormContainer)[0].setAttribute("style", "display: none; background-color: rgba(192, 30, 30, 0.76); position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center;");
+                // document.getElementsByClassName(styles.addEventForm)[0]?.setAttribute("style", "display: flex;");
+                console.log("showEventForm else:", showEventForm);
             }
         }
 
@@ -96,7 +100,7 @@ function QUESTContent() {
                     ))}
                     <FcAddImage className={styles.addEvent} onClick={showAddEvent}/>
                     <div className={styles.addEventFormContainer}>
-                        {showEventForm && <AddEvents />}
+                        <AddEvents />
                     </div>
                 </div>
             </>
